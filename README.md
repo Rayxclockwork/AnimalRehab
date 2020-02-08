@@ -4,6 +4,14 @@
 
 **Version**: 1.0.0 
 
+## User Stories
+* As a vet, I want to give medical detail for medicine dosage to heal animal (species, weight, dilution)
+* As a vet, I want notes section to log health
+* As a vet, I would like available meds for treatment so i can find information faster
+* As a user, I would like it to be easy to navigate
+* As a vet, I would like to be able to add/delete animals from my log
+* As a vet, I would like to archive logs for future reference
+
 ## Overview
 <!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 401 class. (i.e. What's your problem domain?) -->
 
