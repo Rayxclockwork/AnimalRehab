@@ -1,6 +1,7 @@
 # AnimalRehab
 
 **Author**: Ethan Davis, Terrell Douglas, Raven Delaney, Amy Evans, Joseph Hangarter
+
 **Version**: 1.0.0 
 
 ## Overview
