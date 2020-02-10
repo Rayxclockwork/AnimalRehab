@@ -5,7 +5,7 @@ function AnimalInCare(animals) {
     return (
         <>
         <li>
-            <p>{animals.name}</p>
+    <p>{animals.name}</p>
         </li>
         </>
     )
@@ -49,8 +49,9 @@ class AnimalIntakeForm extends React.Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
+        <h1>Animals currently in my care:</h1>
         <ul>
-        {this.state.animals.map(animal => <AnimalInCare key={animal.id} animal={animal}/>)}
+        {this.state.animals.map(animals => <AnimalInCare key={animals.id} animal={animals}/>)}
     </ul>
     </>
       );
