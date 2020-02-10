@@ -25,6 +25,23 @@
 
 ## API
 <!-- Provide detailed instructions for your applications usage. This should include any methods or endpoints available to the user/client/developer. Each section should be formatted to provide clear syntax for usage, example calls including input data requirements and options, and example responses or return values. -->
+- Animal Profile Page
+  - Initial Render
+    - .../animal/:aid/: Get all animal details
+    - .../animal/:aid/logs: Get all logs for animal
+  - Form Renders
+    - .../animal/:aid/archive: Archive animal
+    - .../animal/:aid/delete: Delete animal
+    - .../animal/:aid/release: Release animal from care
+    - .../animal/:aid/details: Update animal meds detail
+    - .../animal/:aid/logs/:lid: Create, update, delete log
+    - .../animal/:aid/weight: Update animal's weight
+
+- Animal In-Care Page
+  - Initial Render
+    - .../animals/:uid
+  - Form Renders
+    - .../animals/:uid/create: Create animal
 
 ## Change Log
 <!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
