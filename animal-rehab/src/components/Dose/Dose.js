@@ -6,8 +6,24 @@ class Dose extends Component {
         this.state = {
             name: '',
             weight: '',
-            dilution: ''
+            dilution: '',
+            results: 'Hello',
+            formErrors: {
+                name: '',
+                weight: '',
+                dilution: ''
+            }
         }
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name] : e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+
     }
 
     render() {
