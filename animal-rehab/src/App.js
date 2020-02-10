@@ -16,6 +16,7 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,8 +25,8 @@ class App extends React.Component {
         isLoggedIn: false
     };
   }
-
   
+
   render() {
     return (
       <Router>
@@ -58,7 +59,7 @@ function Nav(props) {
           <ul id="nav">
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/dose">Dose</NavLink></li>
-          <li><NavLink to="/medicine">Medcine</NavLink></li>
+          <li><NavLink to="/medicine">Medicine</NavLink></li>
           <li><NavLink to="/animals">Animals</NavLink></li>
           </ul>
       </nav>
