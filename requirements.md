@@ -3,14 +3,14 @@
   An all in one web application to view medications given to animals, what they are for, finding out the correct dosage, and keeping notes on animal while in your care.
 
   #### What pain point does this project solve
-  There are a lot of people who help wildlife due to injury, illness, or abadandonment. Our app will help them 
+  There are a lot of people who help wildlife due to injury, illness, or abadandonment. Our app will help them
 
   #### Why should we care about your product
   Wildlife is important and many non-domestic animals such as squirrels and racoons can't take care of themselves if sick or injured. These animals rely on volunteers to rehabilitate them.
 
 ## ► Scope (In/Out):
 
-#### IN - 
+#### IN -
 * The web app will allow users to see common medications, dose(mg/kg), and what they are used to treat
 * The web app will allow a registered user to keep track of the animals in their care with updatable notes
 * The web app will allow a registered user to archive or delete animals they have treated from care log
