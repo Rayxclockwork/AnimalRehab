@@ -17,6 +17,7 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,8 +26,8 @@ class App extends React.Component {
         isLoggedIn: false
     };
   }
-
   
+
   render() {
     return (
       <Router>

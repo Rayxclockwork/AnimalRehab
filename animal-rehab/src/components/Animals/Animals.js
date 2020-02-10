@@ -1,9 +1,61 @@
 import React from "react";
+import axios from 'axios';
 
-class Animals extends React.Component {
-    render() {
-        return <h1>This is where the Animal stuff goes</h1>
-    }
+function AnimalInCare(animals) {
+    return (
+        <>
+        <li>
+    <p>{animals.name}</p>
+        </li>
+        </>
+    )
 }
 
-export default Animals;
+class AnimalIntakeForm extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {animals: []};
+  
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+    }
+  
+    handleChange(event) {
+      this.setState({value: event.target.value});
+    }
+  
+    handleSubmit(event) {
+      alert('A name was submitted: ' + this.state.value);
+      event.preventDefault();
+    }
+
+    async componentDidMount() {
+
+        const response = await axios.get('/data/animals.json');
+    
+        this.setState({
+            animals : response.data
+        })
+    
+    }
+  
+    render() {
+      return (
+        <>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Animal:
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <h1>Animals currently in my care:</h1>
+        <ul>
+        {this.state.animals.map(animals => <AnimalInCare key={animals.id} animal={animals}/>)}
+    </ul>
+    </>
+      );
+    }
+  }
+
+export default AnimalIntakeForm;
