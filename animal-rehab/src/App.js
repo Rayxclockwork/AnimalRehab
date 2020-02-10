@@ -3,6 +3,7 @@ import Home from './components/Home/Home';
 import Dose from './components/Dose/Dose';
 import Medicine from './components/Medicine/Medicine';
 import Animals from './components/Animals/Animals';
+import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
 import './App.scss';
 import './components/Home/Home.scss';
@@ -30,22 +31,26 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Nav />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/dose">
-                <Dose />
-              </Route>
-              <Route path="/medicine">
-                <Medicine />
-              </Route>
-              <Route path="/animals">
-                <Animals />
-              </Route>
-            </Switch>
-          <Footer/>
+          <h1>Animal Rehab</h1>
+            <Nav />
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/dose">
+                  <Dose />
+                </Route>
+                <Route path="/medicine">
+                  <Medicine />
+                </Route>
+                <Route path="/animals">
+                  <Animals />
+                </Route>
+                <Route path="/log">
+                  <LogIn />
+                </Route>
+              </Switch>
+            <Footer/>
         </div>
       </Router>
     );
@@ -58,8 +63,9 @@ function Nav(props) {
           <ul id="nav">
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/dose">Dose</NavLink></li>
-          <li><NavLink to="/medicine">Medcine</NavLink></li>
+          <li><NavLink to="/medicine">Medicine</NavLink></li>
           <li><NavLink to="/animals">Animals</NavLink></li>
+          <li><NavLink to="/log">Log in</NavLink></li>
           </ul>
       </nav>
   )
