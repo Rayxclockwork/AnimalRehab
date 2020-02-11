@@ -4,20 +4,20 @@ class AnimalInCare extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            updating: false,
-            updateInput: '',
-        };
+        // this.state = {
+        //     updating: false,
+        //     updateInput: '',
+        // };
     }
 
-    handleUpdateInput = (e) => {
-        this.setState({updateInput: e.target.value})
-    }
+    // handleUpdateInput = (e) => {
+    //     this.setState({updateInput: e.target.value})
+    // }
 
-    handleSubmit = () => {
-        this.props.updateAnimal(this.state.updateInput);
-        this.setState({updateInput: '', updating: false});
-    }
+    // handleSubmit = () => {
+    //     this.props.updateAnimal(this.state.updateInput);
+    //     this.setState({updateInput: '', updating: false});
+    // }
 
     render() {
         let { updating, updateInput } = this.state;
