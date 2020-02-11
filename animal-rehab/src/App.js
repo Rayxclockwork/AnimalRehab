@@ -11,6 +11,7 @@ import './components/Dose/Dose.scss';
 import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
 import './components/Footer/Footer.scss';
+import './components/LogIn/LogIn.scss';
 import {
   BrowserRouter as Router,
   Switch,
