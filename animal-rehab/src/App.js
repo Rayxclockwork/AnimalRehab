@@ -18,7 +18,6 @@ import {
   Route,
   NavLink,
 } from 'react-router-dom';
-import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,9 +27,7 @@ class App extends React.Component {
     };
   }
   
-
   render() {
-    console.log('hi')
     return (
       <Router>
         <div>

@@ -3,53 +3,72 @@ import axios from 'axios';
 import uuid from "uuid";
 import AnimalInCare from "../AnimalInCare/AnimalInCare";
 
+//when we have up and running back-end
+const url = 'enter back-end api here'
+
 class AnimalIntakeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
+      name: "",
       animals: [],
       date: new Date(),
-      name: ""
+      time: new Date()
     };
   }
   
+
+  //use axios with async to get and post when back-end is running
+
   addAnimal = animalName => {
-    const animal = {id: uuid.v4(), name: animalName, date: this.state.date.toDateString()}
+    let { date, time } = this.state
+    const animal = {
+      id: uuid.v4(), 
+      name: animalName, 
+      date: date.toDateString(), 
+      time: time.toLocaleTimeString()
+    }
+
     this.setState(prevState => ({
       animals: prevState.animals.concat(animal)
     }));
+
   }
   
-  removeAnimal = index => {
-    const animals = this.state.animals;
+  removeAnimal = (index) => {
+    //need to use id instead of splicing index
+    let { animals } = this.state
     animals.splice(index, 1);
     this.setState({ animals });
+    // this.setState({ animals: animals.filter(id => animals.id !== id) })
   };
 
-  updateAnimal = (value) => {
-    // Update the list of animals.  
-    console.log({value})
+  updateAnimal = (newAnimal) => {
+    this.setState({
+      animals: this.state.animals.map(animal => {
+          if (animal.id === newAnimal.id) {
+              return newAnimal;
+          } else {
+              return animal;
+          }
+      })
+    })
   }
 
   handleChange = (e) => {
-    this.setState({
-        name: e.target.value
-    });
+    this.setState({ name: e.target.value });
   };
 
   handleSubmit = (e) => {
     if (this.state.name) {
       this.addAnimal(this.state.name)
-      console.log(this.state.name)
-      this.setState({
-          name: ""
-      });
+      this.setState({ name: "" });
     }
     e.preventDefault();
   }
 
   async componentDidMount() {
-
+    //dummy data to render animals
     const response = await axios.get('/data/animals.json');
 
     this.setState({
@@ -58,17 +77,18 @@ class AnimalIntakeForm extends React.Component {
   }
 
   render() {
+    let { animals, name } = this.state
     return (
       <>
-        <h1>Animals currently in my care: {this.state.animals.length}</h1>
+        <h1>Animals currently in my care: {animals.length}</h1>
 
         <form className="animalForm" onSubmit={this.handleSubmit}>
-            <input type="text" value={this.state.name} onChange={e => this.handleChange(e)} />
+            <input type="text" value={name} onChange={e => this.handleChange(e)} />
             <input type="submit" value="Add Animal" />
         </form>
 
         <ul>
-          {this.state.animals.map((animals, index) => 
+          {animals.map((animals, index) => 
             <AnimalInCare 
                 removeAnimal={this.removeAnimal}
                 updateAnimal={this.updateAnimal} 
