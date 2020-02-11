@@ -29,12 +29,12 @@ class Medicine extends React.Component {
             [
                 'Ciprofloxacin',
                 'Antibiotic',
-                'Antibiotic: Abcesses, bone, joints',
+                'Abcesses, bone, joints',
             ],
             [
                 'Clindamycin',
                 'Antibiotic',
-                'need description',
+                'Abcesses, bone, joints',
             ],
             [
                 'Metronidazole (Flagyl)',
