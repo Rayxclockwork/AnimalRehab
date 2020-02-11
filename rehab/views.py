@@ -58,6 +58,15 @@ class ArchiveAnimal(generics.UpdateAPIView):
         self.animal.save()
 
 
+class DeleteAnimal(generics.DestroyAPIView):
+    """Deletes animal from in-care"""
+    serializer_class = AnimalSerializer
+
+    def get_queryset(self):
+        """queryset for deletion"""
+        return Animal.objects.filter(id=self.kwargs['pk'])
+
+
 # Log views
 
 
