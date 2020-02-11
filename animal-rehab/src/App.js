@@ -1,10 +1,18 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+
 import Home from './components/Home/Home';
 import Dose from './components/Dose/Dose';
 import Medicine from './components/Medicine/Medicine';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
+
 import './App.scss';
 import './components/Home/Home.scss';
 import './components/Dose/Dose.scss';
@@ -12,12 +20,7 @@ import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
 import './components/Footer/Footer.scss';
 import './components/LogIn/LogIn.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from 'react-router-dom';
+
 
 class App extends React.Component {
   constructor(props) {
