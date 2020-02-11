@@ -1,6 +1,5 @@
 footer {
     position: fixed;
-    left: 0;
     bottom: 0;
     width: 100%;
     color: black;
@@ -8,7 +7,12 @@ footer {
     background-color: teal
 }
 
-p{
-    width: 900px;
-    align-self: center;
+.footer{
+    justify-content: center;
+    width: 1200px;
+    margin: auto;
+}
+
+.footer > p {
+    justify-content: center;
 }
