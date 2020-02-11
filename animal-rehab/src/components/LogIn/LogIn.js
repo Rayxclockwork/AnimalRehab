@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
