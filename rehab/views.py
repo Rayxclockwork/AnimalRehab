@@ -32,6 +32,32 @@ class UserAnimalsList(generics.ListAPIView):
         return Animal.objects.filter(vet=self.vet)
 
 
+class UserCreateAnimal(generics.CreateAPIView):
+    """Add an animal to in-care."""
+    queryset = Animal.objects.all()
+    serializer_class = AnimalSerializer
+
+
+class AnimalDetail(generics.ListAPIView):
+    """See all animals of a user."""
+    serializer_class = AnimalSerializer
+
+    def get_queryset(self):
+        """User's animals."""
+        return Animal.objects.filter(id=self.kwargs['aid'])
+
+
+class ArchiveAnimal(generics.UpdateAPIView):
+    """Toggle animal's archived field."""
+    serializer_class = AnimalSerializer
+
+    def get_queryset(self):
+        """Toggle animal's archived field."""
+        self.animal = get_object_or_404(Animal, id=self.kwargs['aid'])
+        is_archived = not self.animal.archived
+        return Animal.objects.filter(id=self.kwargs['aid'], is_archived=is_archived)
+
+
 # Log views
 
 
@@ -39,3 +65,12 @@ class LogList(generics.ListCreateAPIView):
     """Retrieving all logs."""
     quesryset = Log.objects.all()
     serializer_class = LogSerializer
+
+
+class AnimalLogs(generics.ListAPIView):
+    """Read all logs of one animal."""
+    serializer_class = LogSerializer
+
+    def get_queryset(self):
+        """Read all logs of one animal."""
+        return Log.objects.filter(id=self.kwargs['aid'])
