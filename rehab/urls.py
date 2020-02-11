@@ -9,7 +9,8 @@ from .views import (
     AnimalLogs,
     ArchiveAnimal,
     DeleteAnimal,
-    ReleaseAnimal
+    ReleaseAnimal,
+    CreateLogEntry,
 )
     
 
@@ -23,4 +24,5 @@ urlpatterns = [
     path('animal/<int:pk>/archive/', ArchiveAnimal.as_view(), name = 'archive_animal'),
     path('animal/<int:pk>/delete/', DeleteAnimal.as_view(), name = 'delete_animal'),
     path('animal/<int:pk>/release/', ReleaseAnimal.as_view(), name = 'release_animal'),
+    path('log/<int:pk>/create/', CreateLogEntry.as_view(), name = 'new_log_entry'),
 ]

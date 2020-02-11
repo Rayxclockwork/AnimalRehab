@@ -16,7 +16,7 @@ class MedicineList(generics.ListCreateAPIView):
 
 # Animal views
 
-   
+
 class AnimalList(generics.ListCreateAPIView):
     """Retrieving all animals."""
     queryset = Animal.objects.all()
@@ -79,6 +79,14 @@ class ReleaseAnimal(generics.UpdateAPIView):
         self.animal.save()
 
 
+class CreateLogEntry(generics.CreateAPIView):
+    """Create a new log entry"""
+    serializer_class = LogSerializer
+    queryset = Log.objects.all()
+
+        
+
+
 # Log views
 
 
@@ -95,3 +103,4 @@ class AnimalLogs(generics.ListAPIView):
     def get_queryset(self):
         """Read all logs of one animal."""
         return Log.objects.filter(id=self.kwargs['pk'])
+
