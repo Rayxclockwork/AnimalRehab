@@ -1,20 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import uuid from "uuid";
-
-function AnimalInCare(props) {
-
-  return (
-    <>
-      <li className="animals">
-        <p>{props.animal.name}: {props.animal.date}</p>
-      {<button id="delete"onClick={() => props.removeAnimal(props.index)}>Delete</button>}
-
-      </li>
-    </>
-  )
-}
-
+import AnimalInCare from "../AnimalInCare/AnimalInCare";
 
 class AnimalIntakeForm extends React.Component {
   constructor(props) {
@@ -31,7 +18,6 @@ class AnimalIntakeForm extends React.Component {
     this.setState(prevState => ({
       animals: prevState.animals.concat(animal)
     }));
-    this.setState({date: new Date()})
   }
   
   removeAnimal = index => {
@@ -39,6 +25,11 @@ class AnimalIntakeForm extends React.Component {
     animals.splice(index, 1);
     this.setState({ animals });
   };
+
+  updateAnimal = (value) => {
+    // Update the list of animals.  
+    console.log({value})
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -49,6 +40,7 @@ class AnimalIntakeForm extends React.Component {
   handleSubmit = (e) => {
     if (this.state.name) {
       this.addAnimal(this.state.name)
+      console.log(this.state.name)
       this.setState({
           name: ""
       });
@@ -67,19 +59,19 @@ class AnimalIntakeForm extends React.Component {
 
   render() {
     return (
-      
       <>
         <h1>Animals currently in my care: {this.state.animals.length}</h1>
 
         <form className="animalForm" onSubmit={this.handleSubmit}>
-            <input type="text" value={this.state.value} onChange={e => this.handleChange(e)} />
+            <input type="text" value={this.state.name} onChange={e => this.handleChange(e)} />
             <input type="submit" value="Add Animal" />
         </form>
 
         <ul>
           {this.state.animals.map((animals, index) => 
             <AnimalInCare 
-                removeAnimal={this.removeAnimal} 
+                removeAnimal={this.removeAnimal}
+                updateAnimal={this.updateAnimal} 
                 key={animals.id} 
                 animal={animals} 
                 index={index}
