@@ -28,7 +28,7 @@ class UserAnimalsList(generics.ListAPIView):
     
     def get_queryset(self):
         """Set of all animals of user."""
-        self.vet = get_object_or_404(User, id=self.kwargs['uid'])
+        self.vet = get_object_or_404(User, id=self.kwargs['pk'])
         return Animal.objects.filter(vet=self.vet)
 
 
@@ -44,7 +44,7 @@ class AnimalDetail(generics.ListAPIView):
 
     def get_queryset(self):
         """User's animals."""
-        return Animal.objects.filter(id=self.kwargs['aid'])
+        return Animal.objects.filter(id=self.kwargs['pk'])
 
 
 class ArchiveAnimal(generics.UpdateAPIView):
@@ -53,9 +53,9 @@ class ArchiveAnimal(generics.UpdateAPIView):
 
     def get_queryset(self):
         """Toggle animal's archived field."""
-        self.animal = get_object_or_404(Animal, id=self.kwargs['aid'])
-        is_archived = not self.animal.archived
-        return Animal.objects.filter(id=self.kwargs['aid'], is_archived=is_archived)
+        self.animal = get_object_or_404(Animal, id=self.kwargs['pk'])
+        self.animal.is_archived = not self.animal.is_archived
+        self.animal.save()
 
 
 # Log views
@@ -73,4 +73,4 @@ class AnimalLogs(generics.ListAPIView):
 
     def get_queryset(self):
         """Read all logs of one animal."""
-        return Log.objects.filter(id=self.kwargs['aid'])
+        return Log.objects.filter(id=self.kwargs['pk'])
