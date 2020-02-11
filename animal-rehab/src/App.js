@@ -29,6 +29,7 @@ class App extends React.Component {
   
 
   render() {
+    console.log('hi')
     return (
       <Router>
         <div>
