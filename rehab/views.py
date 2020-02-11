@@ -3,6 +3,7 @@ from .models import Medicine, Animal, Log
 from .serializers import MedicineSerializer, AnimalSerializer, LogSerializer
 from rest_framework import generics
 from django.shortcuts import get_object_or_404
+import datetime
 
 
 # Medicine views
@@ -67,12 +68,23 @@ class DeleteAnimal(generics.DestroyAPIView):
         return Animal.objects.filter(id=self.kwargs['pk'])
 
 
+class ReleaseAnimal(generics.UpdateAPIView):
+    """Updates animal's release from care date"""
+    serializer_class = AnimalSerializer
+
+    def get_queryset(self):
+        """queryset for update release status"""
+        self.animal = get_object_or_404(Animal, id=self.kwargs['pk'])
+        self.animal.exit_at = datetime.datetime.now()
+        self.animal.save()
+
+
 # Log views
 
 
 class LogList(generics.ListCreateAPIView):
     """Retrieving all logs."""
-    quesryset = Log.objects.all()
+    queryset = Log.objects.all()
     serializer_class = LogSerializer
 
 
