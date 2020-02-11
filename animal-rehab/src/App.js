@@ -13,14 +13,13 @@ import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
 import './components/AnimalDetails/AnimalDetails.scss';
 import './components/Footer/Footer.scss';
+import './components/LogIn/LogIn.scss';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
 } from 'react-router-dom';
-import axios from 'axios';
-import AnimalDetail from './components/AnimalDetails/AnimalDetails';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,9 +29,7 @@ class App extends React.Component {
     };
   }
   
-
   render() {
-    console.log('hi')
     return (
       <Router>
         <div>
