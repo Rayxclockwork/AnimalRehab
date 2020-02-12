@@ -16,11 +16,13 @@ import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
 
+import AnimalDetails from './components/AnimalDetails/AnimalDetails'
 import './App.scss';
 import './components/Home/Home.scss';
 import './components/Dose/Dose.scss';
 import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
+import './components/AnimalDetails/AnimalDetails.scss';
 import './components/Footer/Footer.scss';
 import './components/LogIn/LogIn.scss';
 
@@ -84,7 +86,10 @@ class App extends React.Component {
                 <Route path="/animals/:aid">
                   <AnimalProfile animals={this.state.animals} />
                 </Route>
+
+
                 <Route path="/animals/:aid" render={this.animalProfile} />
+
                 <Route path="/log">
                   <LogIn />
                 </Route>
