@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  NavLink,
+  NavLink
 } from 'react-router-dom';
 
 import axios from 'axios';
@@ -11,6 +11,7 @@ import axios from 'axios';
 import Home from './components/Home/Home';
 import Dose from './components/Dose/Dose';
 import Medicine from './components/Medicine/Medicine';
+import AnimalProfile from './components/AnimalProfile/AnimalProfile';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
@@ -33,8 +34,6 @@ class App extends React.Component {
       medicine: [],
       isLoggedIn: false
     };
-
-    this.animalProfile = this.animalProfile.bind(this);
   }
 
   async componentDidMount() {
@@ -47,10 +46,6 @@ class App extends React.Component {
     });
   }
 
-  animalProfile() {
-    console.log('Animal profile');
-  }
-  
   render() {
     return (
       <Router>
@@ -70,7 +65,9 @@ class App extends React.Component {
                 <Route exact path="/animals">
                   <Animals animals={this.state.animals} />
                 </Route>
-                <Route path="/animals/:aid" render={this.animalProfile} />
+                <Route path="/animals/:aid">
+                  <AnimalProfile animals={this.state.animals} />
+                </Route>
                 <Route path="/log">
                   <LogIn />
                 </Route>
