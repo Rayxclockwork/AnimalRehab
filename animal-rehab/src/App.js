@@ -94,14 +94,7 @@ class App extends React.Component {
                 <Route path="/animals/:aid">
                   <AnimalProfile animals={this.state.animals} />
                 </Route>
-<<<<<<< HEAD
                 <Route path="/animals/:aid" render={this.animalProfile} />
-=======
-
-
-                <Route path="/animals/:aid" render={this.animalProfile} />
-
->>>>>>> dd0979f82dc289e3d10cf0aa1b1fcc03ffb9a0ce
                 <Route path="/log">
                   <LogIn />
                 </Route>
