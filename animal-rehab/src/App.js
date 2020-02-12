@@ -5,7 +5,8 @@ import Medicine from './components/Medicine/Medicine';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
-import AnimalDetails from './components/AnimalDetails/AnimalDetails'
+import Header from './components/Header/Header';
+import AnimalDetails from './components/AnimalDetails/AnimalDetails';
 import './App.scss';
 import './components/Home/Home.scss';
 import './components/Dose/Dose.scss';
@@ -13,14 +14,16 @@ import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
 import './components/AnimalDetails/AnimalDetails.scss';
 import './components/Footer/Footer.scss';
+import './components/LogIn/LogIn.scss';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
 } from 'react-router-dom';
+
 import axios from 'axios';
-import AnimalDetail from './components/AnimalDetails/AnimalDetails';
 
 class App extends React.Component {
   constructor(props) {
@@ -36,9 +39,9 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <h1>Animal Rehab</h1>
+            <Header/>
             <Nav />
-              <Switch>
+               <Switch>
                 <Route exact path="/">
                   <Home />
                 </Route>
