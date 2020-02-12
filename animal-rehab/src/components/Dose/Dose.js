@@ -17,10 +17,12 @@ class Dose extends Component {
 
         this.calculateVolumesToGive = this.calculateVolumesToGive.bind(this);
         this.renderDoseForm = this.renderDoseForm.bind(this);
+        this.renderVolumesToGiveTable = this.renderVolumesToGiveTable.bind(this);
     }
 
     calculateVolumesToGive(dose, weight, dilution, pillStrength) {
-        return (dose / 1000) * weight * dilution / pillStrength;
+        const volumeToGive = (dose / 1000) * weight * dilution / pillStrength;
+        return String(volumeToGive);
     }
 
     handleChange = (e) => {
@@ -41,17 +43,23 @@ class Dose extends Component {
         const newVolumesToGive = [medAntibiotic, medPainReliever, medMisc]
             .filter(med => med)
             .map(med => {
+                const dose = parseFloat(med.dose);
+                const weight = parseFloat(this.state.weight);
+                const dilution = parseFloat(this.state.dilution);
+                const pillStrength = parseFloat(med.pillStrength);
+
                 return {
+                    id: med.id,
                     type: med.type,
                     name: med.name,
-                    volumeToGive: this.calculateVolumesToGive(med.dose, this.state.weight, this.state.dilution, med.pillStrength)
+                    volumeToGive: this.calculateVolumesToGive(dose, weight, dilution, pillStrength)
                 }
             })
 
 
         this.setState({
             volumesToGive: newVolumesToGive
-        }, () => console.log('wait', this.state));
+        });
     }
 
     renderDoseForm() {
@@ -115,7 +123,33 @@ class Dose extends Component {
                         </div>
                     </form>
                 </div>
+                <section>
+                    {this.state.volumesToGive && this.state.volumesToGive[0] ? this.renderVolumesToGiveTable() : null}
+                </section>
             </div >
+        );
+    }
+
+    renderVolumesToGiveTable() {
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Volumes to Give</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.state.volumesToGive.map(volumeToGive => (
+                    <tr key={volumeToGive.id}>
+                        <td>{volumeToGive.type}</td>
+                        <td>{volumeToGive.name}</td>
+                        <td>{volumeToGive.volumeToGive}</td>
+                    </tr>
+                    ))}
+                </tbody>
+            </table>
         );
     }
 
