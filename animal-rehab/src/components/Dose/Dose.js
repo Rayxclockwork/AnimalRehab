@@ -43,7 +43,7 @@ class Dose extends Component {
                     </div>
                     <div className='waterDilution'>
                         <label htmlFor='waterDilution'>Water Dilution</label>
-                        <input type='text' className='' placeholder='Water Dilution' type='text' name='waterDilution' noValidate onChange={this.handleChange}>
+                        <input defaultValue ='100' type='int'ref ={this.input} className='' placeholder='Water Dilution' type='text' name='waterDilution' noValidate onChange={this.handleChange}>
                         </input>
                     </div>
                     <div className="radio">

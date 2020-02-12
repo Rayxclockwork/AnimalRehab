@@ -11,15 +11,18 @@ import axios from 'axios';
 import Home from './components/Home/Home';
 import Dose from './components/Dose/Dose';
 import Medicine from './components/Medicine/Medicine';
+import AnimalProfile from './components/AnimalProfile/AnimalProfile';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
 
+import AnimalDetails from './components/AnimalDetails/AnimalDetails'
 import './App.scss';
 import './components/Home/Home.scss';
 import './components/Dose/Dose.scss';
 import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
+import './components/AnimalDetails/AnimalDetails.scss';
 import './components/Footer/Footer.scss';
 import './components/LogIn/LogIn.scss';
 
@@ -50,7 +53,17 @@ class App extends React.Component {
   animalProfile() {
     console.log('Animal profile');
   }
-  
+
+  async componentDidMount() {
+    const animalsResponse = await axios.get('/data/animals.json');
+    const medicineResponse = await axios.get('/data/medicine.json');
+
+    this.setState({
+      animals: animalsResponse.data,
+      medicine: medicineResponse.data
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -70,7 +83,13 @@ class App extends React.Component {
                 <Route exact path="/animals">
                   <Animals animals={this.state.animals} />
                 </Route>
+                <Route path="/animals/:aid">
+                  <AnimalProfile animals={this.state.animals} />
+                </Route>
+
+
                 <Route path="/animals/:aid" render={this.animalProfile} />
+
                 <Route path="/log">
                   <LogIn />
                 </Route>
