@@ -11,6 +11,7 @@ import axios from 'axios';
 import Home from './components/Home/Home';
 import Dose from './components/Dose/Dose';
 import Medicine from './components/Medicine/Medicine';
+import AnimalProfile from './components/AnimalProfile/AnimalProfile';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
@@ -50,7 +51,17 @@ class App extends React.Component {
   animalProfile() {
     console.log('Animal profile');
   }
-  
+
+  async componentDidMount() {
+    const animalsResponse = await axios.get('/data/animals.json');
+    const medicineResponse = await axios.get('/data/medicine.json');
+
+    this.setState({
+      animals: animalsResponse.data,
+      medicine: medicineResponse.data
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -69,6 +80,9 @@ class App extends React.Component {
                 </Route>
                 <Route exact path="/animals">
                   <Animals animals={this.state.animals} />
+                </Route>
+                <Route path="/animals/:aid">
+                  <AnimalProfile animals={this.state.animals} />
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
                 <Route path="/log">
