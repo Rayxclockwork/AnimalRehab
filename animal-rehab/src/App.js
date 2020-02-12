@@ -15,15 +15,23 @@ import AnimalProfile from './components/AnimalProfile/AnimalProfile';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
+<<<<<<< HEAD
+import Header from './components/Header/Header';
+
+=======
 
 import AnimalDetails from './components/AnimalDetails/AnimalDetails'
+>>>>>>> dd0979f82dc289e3d10cf0aa1b1fcc03ffb9a0ce
 import './App.scss';
 import './components/Home/Home.scss';
 import './components/Dose/Dose.scss';
 import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
-import './components/AnimalDetails/AnimalDetails.scss';
 import './components/Footer/Footer.scss';
+<<<<<<< HEAD
+import './components/Header/Header.scss';
+=======
+>>>>>>> dd0979f82dc289e3d10cf0aa1b1fcc03ffb9a0ce
 import './components/LogIn/LogIn.scss';
 
 
@@ -68,7 +76,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <h1>Animal Rehab</h1>
+            <Header />
             <Nav />
               <Switch>
                 <Route exact path="/">
@@ -86,10 +94,14 @@ class App extends React.Component {
                 <Route path="/animals/:aid">
                   <AnimalProfile animals={this.state.animals} />
                 </Route>
+<<<<<<< HEAD
+                <Route path="/animals/:aid" render={this.animalProfile} />
+=======
 
 
                 <Route path="/animals/:aid" render={this.animalProfile} />
 
+>>>>>>> dd0979f82dc289e3d10cf0aa1b1fcc03ffb9a0ce
                 <Route path="/log">
                   <LogIn />
                 </Route>

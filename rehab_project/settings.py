@@ -150,4 +150,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dd0979f82dc289e3d10cf0aa1b1fcc03ffb9a0ce
