@@ -1,7 +1,0 @@
-[
-	{"name": "Drug 1", "id": 1, "type": "steroid", "description": "it burns"},
-	{"name": "Drug 2", "id": 2, "type": "steroid", "description":"it doesnt burn"},
-	{"name": "Drug 3", "id": 3, "type": "antibiotic", "description":"doesnt work"},
-	{"name": "Drug 4", "id": 4, "type": "pain reliever", "description": "the good stuff"},
-	{"name": "Drug 5", "id": 5, "type": "antibiotic", "description": "doodoo"}
-]
