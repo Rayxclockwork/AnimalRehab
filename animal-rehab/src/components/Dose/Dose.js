@@ -5,15 +5,10 @@ class Dose extends Component {
         super(props);
 
         this.state = {
-            name: '',
+            type: '',
             weight: '',
             dilution: '',
             results: 'Hello',
-            // formErrors: {
-            //     name: '',
-            //     weight: '',
-            //     dilution: ''
-            // }
         }
     }
 
@@ -29,6 +24,7 @@ class Dose extends Component {
         e.preventDefault();
 
         console.log(this.state);
+        console.log(this.props.medicine);
     }
 
     render() {
@@ -39,18 +35,18 @@ class Dose extends Component {
 
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className='animalType'>
-                            <label htmlFor='animalType'>Animal Type</label>
-                            <input type='text' className='' placeholder='Type Of Animal' type='text' name='animalType' noValidate onChange={this.handleChange}>
+                            <label htmlFor='type'>Animal Type</label>
+                            <input type='text' className='' placeholder='Type Of Animal' type='text' name='type' noValidate onChange={this.handleChange}>
                             </input>
                         </div>
                         <div className='animalWeight'>
-                            <label htmlFor='animalWeight'>Animal Weight</label>
-                            <input type='text' className='' placeholder='Weight in grams' type='text' name='animalWeight' noValidate onChange={this.handleChange}>
+                            <label htmlFor='weight'>Animal Weight</label>
+                            <input type='text' className='' placeholder='Weight in grams' type='text' name='weight' noValidate onChange={this.handleChange}>
                             </input>
                         </div>
                         <div className='waterDilution'>
-                            <label htmlFor='waterDilution'>Water Dilution</label>
-                            <input defaultValue='100' type='int' ref={this.input} className='' placeholder='Water Dilution' type='text' name='waterDilution' noValidate onChange={this.handleChange}>
+                            <label htmlFor='dilution'>Water Dilution</label>
+                            <input defaultValue='100' type='int' ref={this.input} className='' placeholder='Water Dilution' type='text' name='dilution' noValidate onChange={this.handleChange}>
                             </input>
                         </div>
                         
