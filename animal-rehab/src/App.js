@@ -57,7 +57,7 @@ class App extends React.Component {
                   <Home />
                 </Route>
                 <Route path="/dose">
-                  <Dose />
+                  <Dose medicine={this.state.medicine} />
                 </Route>
                 <Route path="/medicine">
                   <Medicine medicine={this.state.medicine} />

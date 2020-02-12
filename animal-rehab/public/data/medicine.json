@@ -1,32 +1,58 @@
 [
 	{
 		"id": 1,
-		"name": "Drug 1",
-		"type": "steroid",
-		"description": "it burns"
+		"name": "SMZ (Bactrim)",
+		"type": "antibiotic",
+		"dose": 20,
+		"pillStregth": 400,
+		"description": "Used to treat infections"
 	},
 	{
 		"id": 2,
-		"name": "Drug 2",
-		"type": "steroid",
-		"description": "it doesnt burn"
+		"name": "Baytril",
+		"type": "antibiotic",
+		"dose": 10,
+		"pillStregth": 22.7,
+		"description": "Skin treatment"
 	},
 	{
 		"id": 3,
-		"name": "Drug 3",
-		"type": "antibiotic",
-		"description": "doesnt work"
+		"name": "Tramadol",
+		"type": "pain-reliever",
+		"dose": 4,
+		"pillStregth": 50,
+		"description": "Works synergestically with metacam"
 	},
 	{
 		"id": 4,
-		"name": "Drug 4",
-		"type": "pain reliever",
-		"description": "the good stuff"
+		"name": "Capstar (Nitenpryam)",
+		"type": "misc",
+		"dose": 1,
+		"pillStregth": 11.4,
+		"description": "Kills fleas"
 	},
 	{
 		"id": 5,
-		"name": "Drug 5",
+		"name": "Valium (Diazepam)",
+		"type": "misc",
+		"dose": 1.5,
+		"pillStregth": 5,
+		"description": "Calms muscles"
+	},
+	{
+		"id": 6,
+		"name": "Buprenorphine",
+		"type": "pain-reliever",
+		"dose": 0.3,
+		"pillStregth": 0.3,
+		"description": "Pain management"
+	},
+	{
+		"id": 7,
+		"name": "Cipro",
 		"type": "antibiotic",
-		"description": "doodoo"
+		"dose": 1.5,
+		"pillStregth": 500,
+		"description": "Treat respiratory infections"
 	}
 ]

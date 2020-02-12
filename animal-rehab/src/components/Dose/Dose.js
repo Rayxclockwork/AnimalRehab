@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 class Dose extends Component {
     constructor(props){
         super(props);
+
+        console.log(this.props.medicine);
+
         this.state = {
             name: '',
             weight: '',
@@ -15,15 +18,19 @@ class Dose extends Component {
             }
         }
     }
+
     handleChange = (e) => {
+        e.preventDefault();
+
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         })
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
+        console.log(this.state);
     }
 
     render() {
