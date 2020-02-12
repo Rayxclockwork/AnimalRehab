@@ -25,7 +25,13 @@ SECRET_KEY = ')f!+pdudig7(1b7%(e7!#w2*prt!s0-d@&keo6v1=732hnq0*g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '64.225.2.201']
+
+#change to origin whitelist when frontend is deployed
+CORS_ORIGIN_ALLOW_ALL = True
+
+# uncomment this with frontend API domain
+# CORS_ORIGIN_WHITELIST = ["http://example.com"]
 
 
 # Application definition
@@ -43,11 +49,13 @@ INSTALLED_APPS = [
 
     #3rd party apps
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
