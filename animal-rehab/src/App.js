@@ -31,8 +31,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      animals: [],
-      medicine: [],
+      animals: '',
+      medicine: '',
       isLoggedIn: false
     };
 
@@ -44,23 +44,13 @@ class App extends React.Component {
     const medicineResponse = await axios.get('/data/medicine.json');
 
     this.setState({
-      animals: animalsResponse.data,
-      medicine: medicineResponse.data
+      animals: JSON.stringify(animalsResponse.data),
+      medicine: JSON.stringify(medicineResponse.data)
     });
   }
 
   animalProfile() {
     console.log('Animal profile');
-  }
-
-  async componentDidMount() {
-    const animalsResponse = await axios.get('/data/animals.json');
-    const medicineResponse = await axios.get('/data/medicine.json');
-
-    this.setState({
-      animals: animalsResponse.data,
-      medicine: medicineResponse.data
-    });
   }
 
   render() {
