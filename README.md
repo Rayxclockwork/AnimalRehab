@@ -21,11 +21,19 @@
 
 ![Models](/assets/wireframes.jpg)
 
+##
+
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. This is also an area which you can include any visuals; flow charts, example usage gifs, screen captures, etc.-->
 
 ## API
 <!-- Provide detailed instructions for your applications usage. This should include any methods or endpoints available to the user/client/developer. Each section should be formatted to provide clear syntax for usage, example calls including input data requirements and options, and example responses or return values. -->
+React Deployment - Zeit Now
+* https://animal-rehab.josephhangarter.now.sh/
+
+Django Deployment - Digital Ocean
+* admin page- http://64.225.2.201:8000/admin/
+
 - Animal In-Care Page
   - Initial Render
     - .../animals/:uid/ - Get all user's animals in-care
