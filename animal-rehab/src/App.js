@@ -15,23 +15,14 @@ import AnimalProfile from './components/AnimalProfile/AnimalProfile';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
-<<<<<<< HEAD
 import Header from './components/Header/Header';
-
-=======
-
-import AnimalDetails from './components/AnimalDetails/AnimalDetails'
->>>>>>> dd0979f82dc289e3d10cf0aa1b1fcc03ffb9a0ce
 import './App.scss';
 import './components/Home/Home.scss';
 import './components/Dose/Dose.scss';
 import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
 import './components/Footer/Footer.scss';
-<<<<<<< HEAD
 import './components/Header/Header.scss';
-=======
->>>>>>> dd0979f82dc289e3d10cf0aa1b1fcc03ffb9a0ce
 import './components/LogIn/LogIn.scss';
 
 
@@ -62,14 +53,18 @@ class App extends React.Component {
     console.log('Animal profile');
   }
 
-  async componentDidMount() {
-    const animalsResponse = await axios.get('/data/animals.json');
-    const medicineResponse = await axios.get('/data/medicine.json');
+  animalCreateHandler(event) {
 
     this.setState({
-      animals: animalsResponse.data,
-      medicine: medicineResponse.data
-    });
+        [event.target.name]: event.target.value
+    })
+  }
+
+  submitHandler(event) {
+      event.preventDefault();
+      const data = {...this.state};
+      this.props.onSubmit(data);
+    
   }
 
   render() {
@@ -90,6 +85,9 @@ class App extends React.Component {
                 </Route>
                 <Route exact path="/animals">
                   <Animals animals={this.state.animals} />
+                </Route>
+                <Route exact path="/animals">
+                <Animals onSubmit={this.state.onSubmit} />
                 </Route>
                 <Route path="/animals/:aid">
                   <AnimalProfile animals={this.state.animals} />
