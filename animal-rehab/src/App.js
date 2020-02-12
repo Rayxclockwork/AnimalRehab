@@ -33,10 +33,16 @@ class App extends React.Component {
     this.state = {
       animals: [],
       medicine: [],
-      isLoggedIn: false
+      isLoggedIn: false,
+      medDetails: [],
+      logDetails: [],
     };
 
     this.animalProfile = this.animalProfile.bind(this);
+    this.animalCreateHandler = this.animalCreateHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
+    this.logCreateHandler = this.logCreateHandler.bind(this);
+    this.medDetailsHandler = this.medDetailsHandler.bind(this);
   }
 
   async componentDidMount() {
@@ -54,18 +60,47 @@ class App extends React.Component {
   }
 
   animalCreateHandler(event) {
-
+    const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
+    const newId = sortedAnimals[sortedAnimals.length-1].id
+    const newAnimal = {
+      id : newId,
+      name: event.target.value,
+      entryAt: String(Date.now()),
+      exitAt: " "
+    }
     this.setState({
-        [event.target.name]: event.target.value
+        animals: this.state.animals.concat([newAnimal])
     })
   }
+
+
+  logCreateHandler(event) {
+    const newLog = {
+      logDetails: event.target.value,
+      logDate: String(Date.now()),
+    }
+    this.setState({
+        logDetails: this.state.logDetails.concat([newLog])
+    })
+  }
+
+  medDetailsHandler(event) {
+    const newMedDetails = {
+      medDetails: event.target.value,
+      entryDate: String(Date.now()),
+    }
+    this.setState({
+        medDetails: this.state.medDetails.concat([newMedDetails])
+    })
+  }
+
 
   submitHandler(event) {
       event.preventDefault();
       const data = {...this.state};
       this.props.onSubmit(data);
-    
   }
+
 
   render() {
     return (
@@ -84,18 +119,19 @@ class App extends React.Component {
                   <Medicine medicine={this.state.medicine} />
                 </Route>
                 <Route exact path="/animals">
-                  <Animals animals={this.state.animals} />
-                </Route>
-                <Route exact path="/animals">
-                <Animals onSubmit={this.state.onSubmit} />
+                  <Animals animals={this.state.animals}/>
+                  <Route path="/animals" onSubmit={this.state.animals.onSubmit}render={this.animals} />
                 </Route>
                 <Route path="/animals/:aid">
                   <AnimalProfile animals={this.state.animals} />
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
+                <Route path="/animals/:aid"onSubmit={this.state.logDetails.onSubmit} render={this.logDetails} />
+                <Route path="/animals/:aid"onSubmit={this.state.medDetails.onSubmit} render={this.medDetails} />
                 <Route path="/log">
                   <LogIn />
                 </Route>
+                
               </Switch>
             <Footer/>
         </div>
