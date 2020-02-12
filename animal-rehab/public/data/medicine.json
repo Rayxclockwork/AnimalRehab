@@ -1,32 +1,42 @@
 [
 	{
 		"id": 1,
-		"name": "Drug 1",
-		"type": "steroid",
-		"description": "it burns"
+		"name": "SMZ (Bactrim) 800mg",
+		"type": "antibiotic",
+		"description": "used to treat parasitic infections and coccidia, respiratory infections such as bronchitis, urinary tract infections, skin infections, ear infections, gastrointestinal infections, and certain types of diarrhea.",
+		"dose": 20,
+		"strength": 800
 	},
 	{
 		"id": 2,
-		"name": "Drug 2",
-		"type": "steroid",
-		"description": "it doesnt burn"
+		"name": "Tramadol",
+		"type": "pain management",
+		"description": " 1-4 mg/kg. Works synergestically with metacam.",
+		"dose": 4,
+		"strength": 50
 	},
 	{
 		"id": 3,
-		"name": "Drug 3",
-		"type": "antibiotic",
-		"description": "doesnt work"
+		"name": "Prednisone (injectible)  10mg/ml",
+		"type": "steroid",
+		"description": " especially used for traumatic neurologic inflammation. Oral corticosteroids (prednisolone 0.5mg/kg q12hours) may be used for up to 7 days, however there is no proven benefit of long term treatment.",
+		"dose": 5.5,
+		"strength": 10
 	},
 	{
 		"id": 4,
 		"name": "Drug 4",
 		"type": "pain reliever",
-		"description": "the good stuff"
+		"description": "the good stuff",
+		"dose": 10,
+		"strength": 600
 	},
 	{
 		"id": 5,
 		"name": "Drug 5",
 		"type": "antibiotic",
-		"description": "doodoo"
+		"description": "doodoo",
+		"dose": 5,
+		"strength": 300
 	}
 ]

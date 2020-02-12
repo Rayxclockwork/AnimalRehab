@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Dose extends Component {
     constructor(props){
         super(props);
         this.state = {
             name: '',
-            weight: '',
-            dilution: '',
+            weight: 0,
+            dilution: 0,
             results: 'Hello',
             formErrors: {
                 name: '',
-                weight: '',
-                dilution: ''
+                weight: 0,
+                dilution: 0
             }
         }
     }
@@ -23,7 +24,7 @@ class Dose extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-
+        console.log((e.target.animalWeight.value * e.target.waterDilution.value))
     }
 
     render() {
@@ -38,12 +39,12 @@ class Dose extends Component {
                     </div>
                     <div className='animalWeight'>
                         <label htmlFor='animalWeight'>Animal Weight</label>
-                        <input type='text' className='' placeholder='Weight in grams' type='text' name='animalWeight' noValidate onChange={this.handleChange}>
+                        <input type='int' className='' placeholder='Weight in grams' type='int' name='animalWeight' noValidate onChange={this.handleChange}>
                         </input>
                     </div>
                     <div className='waterDilution'>
                         <label htmlFor='waterDilution'>Water Dilution</label>
-                        <input type='text' className='' placeholder='Water Dilution' type='text' name='waterDilution' noValidate onChange={this.handleChange}>
+                        <input type='int' className='' placeholder='Water Dilution' type='int' name='waterDilution' noValidate onChange={this.handleChange}>
                         </input>
                     </div>
                     <div className="radio">
