@@ -84,7 +84,6 @@ class CreateLogEntry(generics.CreateAPIView):
     serializer_class = LogSerializer
     queryset = Log.objects.all()
 
-        
 
 
 # Log views
