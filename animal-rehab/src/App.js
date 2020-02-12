@@ -59,15 +59,16 @@ class App extends React.Component {
     console.log('Animal profile');
   }
 
-  animalCreateHandler(event) {
+  animalCreateHandler(name) {
     const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
     const newId = sortedAnimals[sortedAnimals.length-1].id
     const newAnimal = {
       id : newId,
-      name: event.target.value,
+      name: name,
       entryAt: String(Date.now()),
       exitAt: " "
     }
+    console.log(newAnimal);
     this.setState({
         animals: this.state.animals.concat([newAnimal])
     })
@@ -119,8 +120,7 @@ class App extends React.Component {
                   <Medicine medicine={this.state.medicine} />
                 </Route>
                 <Route exact path="/animals">
-                  <Animals animals={this.state.animals}/>
-                  <Route path="/animals" onSubmit={this.state.animals.onSubmit}render={this.animals} />
+                  <Animals animals={this.state.animals} onSubmit={this.animalCreateHandler}/>
                 </Route>
                 <Route path="/animals/:aid">
                   <AnimalProfile animals={this.state.animals} />
