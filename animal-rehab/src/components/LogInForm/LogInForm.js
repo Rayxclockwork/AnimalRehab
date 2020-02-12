@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const url = 'http://localhost:3001/log';
+const url = 'http://64.225.2.201:8000/api/';
+
 class LoginForm extends Component {
 
     constructor(props) {
@@ -14,43 +15,39 @@ class LoginForm extends Component {
         this.changeHandler = this.changeHandler.bind(this);
     }
 
-    changeHandler(event) {
+    changeHandler(e) {
         this.setState({
-            [event.target.name] : event.target.value
+            [e.target.name] : e.target.value
         })
     }
 
 
-    async obtainTokens(event) {
+    async obtainTokens(e) {
 
-        event.preventDefault();
+        e.preventDefault();
 
         try {
             const response = await axios.post(url + 'token/', {
                 username: this.state.username,
                 password: this.state.password,
             });
-
+            console.log(response.data)
             this.props.onSuccess(response.data);
 
         } catch (error) {
             console.error('ugh', error);
         }
-
-
     }
 
     render() {
         return (
-        <>
-            
+        <>        
             <form  className='RegisterUser' onSubmit={this.obtainTokens}>
                 <input name="username" type="text" value={this.state.username} placeholder="username" onChange={this.changeHandler}/>
                 <input name="password" type="password" value={this.state.password} placeholder="password" onChange={this.changeHandler}/>
-                <a href='#' className='logInButton'>Log In</a>
+                <input type="submit" placeholder="submit"/>
             </form>
-        </>
-        
+        </> 
         
         )
     }
