@@ -12,7 +12,9 @@ export default props => {
       <h2>{animal.name}</h2>
       <p>{`${animal.entryAt} - ${animal.exitAt}`}</p>
       <h3>Medication Details</h3>
-      <p>{animal.details}</p>
+      <p>{animal.medDetails}</p>
+      <h3>Data Log Details</h3>
+      <p>{animal.logDetails}</p>
       </>
     );
   } else {
