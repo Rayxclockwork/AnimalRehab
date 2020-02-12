@@ -1,10 +1,21 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
+
+import axios from 'axios';
+
 import Home from './components/Home/Home';
 import Dose from './components/Dose/Dose';
 import Medicine from './components/Medicine/Medicine';
+import AnimalProfile from './components/AnimalProfile/AnimalProfile';
 import Animals from './components/Animals/Animals';
 import LogIn from './components/LogIn/LogIn';
 import Footer from './components/Footer/Footer';
+
 import AnimalDetails from './components/AnimalDetails/AnimalDetails'
 import './App.scss';
 import './components/Home/Home.scss';
@@ -14,21 +25,45 @@ import './components/Animals/Animals.scss';
 import './components/AnimalDetails/AnimalDetails.scss';
 import './components/Footer/Footer.scss';
 import './components/LogIn/LogIn.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink,
-} from 'react-router-dom';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-        isLoggedIn: false
+      animals: [],
+      medicine: [],
+      isLoggedIn: false
     };
+
+    this.animalProfile = this.animalProfile.bind(this);
   }
-  
+
+  async componentDidMount() {
+    const animalsResponse = await axios.get('/data/animals.json');
+    const medicineResponse = await axios.get('/data/medicine.json');
+
+    this.setState({
+      animals: animalsResponse.data,
+      medicine: medicineResponse.data
+    });
+  }
+
+  animalProfile() {
+    console.log('Animal profile');
+  }
+
+  async componentDidMount() {
+    const animalsResponse = await axios.get('/data/animals.json');
+    const medicineResponse = await axios.get('/data/medicine.json');
+
+    this.setState({
+      animals: animalsResponse.data,
+      medicine: medicineResponse.data
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -43,14 +78,18 @@ class App extends React.Component {
                   <Dose />
                 </Route>
                 <Route path="/medicine">
-                  <Medicine />
+                  <Medicine medicine={this.state.medicine} />
                 </Route>
-                <Route path="/animals">
-                  <Animals />
+                <Route exact path="/animals">
+                  <Animals animals={this.state.animals} />
                 </Route>
-                <Route path="/animalDetails">
-                  <AnimalDetails />
+                <Route path="/animals/:aid">
+                  <AnimalProfile animals={this.state.animals} />
                 </Route>
+
+
+                <Route path="/animals/:aid" render={this.animalProfile} />
+
                 <Route path="/log">
                   <LogIn />
                 </Route>
