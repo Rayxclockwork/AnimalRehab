@@ -14,7 +14,12 @@ class Dose extends Component {
             medMiscId: ''
         }
 
+        this.calculateVolumesToGive = this.calculateVolumesToGive.bind(this);
         this.renderDoseForm = this.renderDoseForm.bind(this);
+    }
+
+    calculateVolumesToGive(dose, weight, dilution, pillStrength) {
+        return (dose / 1000) * weight * dilution / pillStrength;
     }
 
     handleChange = (e) => {
@@ -27,9 +32,6 @@ class Dose extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(this.state);
-        console.log(this.props.medicine);
     }
 
     renderDoseForm() {
@@ -45,12 +47,12 @@ class Dose extends Component {
                             </input>
                         </div>
                         <div className='animalWeight'>
-                            <label htmlFor='weight'>Animal Weight</label>
+                            <label htmlFor='weight'>Animal Weight (grams)</label>
                             <input type='text' className='' placeholder='Weight in grams' type='text' name='weight' noValidate onChange={this.handleChange}>
                             </input>
                         </div>
                         <div className='waterDilution'>
-                            <label htmlFor='dilution'>Water Dilution</label>
+                            <label htmlFor='dilution'>Water Dilution (cc)</label>
                             <input defaultValue='100' type='int' ref={this.input} className='' placeholder='Water Dilution' type='text' name='dilution' noValidate onChange={this.handleChange}>
                             </input>
                         </div>
