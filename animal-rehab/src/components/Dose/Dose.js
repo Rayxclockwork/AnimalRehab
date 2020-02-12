@@ -11,7 +11,8 @@ class Dose extends Component {
             dilution: '',
             medAntibioticId: '',
             medPainRelieverId: '',
-            medMiscId: ''
+            medMiscId: '',
+            volumesToGive: null
         }
 
         this.calculateVolumesToGive = this.calculateVolumesToGive.bind(this);
@@ -32,6 +33,25 @@ class Dose extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        const medAntibiotic = this.props.medicine.find(med => String(med.id) === this.state.medAntibioticId);
+        const medPainReliever = this.props.medicine.find(med => String(med.id) === this.state.medPainRelieverId);
+        const medMisc = this.props.medicine.find(med => String(med.id) === this.state.medMiscId);
+
+        const newVolumesToGive = [medAntibiotic, medPainReliever, medMisc]
+            .filter(med => med)
+            .map(med => {
+                return {
+                    type: med.type,
+                    name: med.name,
+                    volumeToGive: this.calculateVolumesToGive(med.dose, this.state.weight, this.state.dilution, med.pillStrength)
+                }
+            })
+
+
+        this.setState({
+            volumesToGive: newVolumesToGive
+        }, () => console.log('wait', this.state));
     }
 
     renderDoseForm() {
