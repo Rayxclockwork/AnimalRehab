@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Dose extends Component {
     constructor(props) {
@@ -8,8 +9,12 @@ class Dose extends Component {
             type: '',
             weight: '',
             dilution: '',
-            results: 'Hello',
+            medAntibioticId: '',
+            medPainRelieverId: '',
+            medMiscId: ''
         }
+
+        this.renderDoseForm = this.renderDoseForm.bind(this);
     }
 
     handleChange = (e) => {
@@ -27,7 +32,7 @@ class Dose extends Component {
         console.log(this.props.medicine);
     }
 
-    render() {
+    renderDoseForm() {
         return (
             <div className='wrapper'>
                 <div className='form-wrapper'>
@@ -50,38 +55,37 @@ class Dose extends Component {
                             </input>
                         </div>
                         
-                        <select required name="inputDay">
-                        <option value="" hidden>Antibiotic</option>
-                        <option value="1"> SMZ(Bactrim)</option>
-                        <option value="2"> Clavamox(Augmentin)</option>
-                        <option value="3"> Clindamycin</option>
-                        <option value="4"> Metronidazole(Flagyl)</option>
-                        <option value="5"> Ciprofloxacin</option>
-                        <option value="6"> Dicloxacillin(Cloxoclan)</option>
+                        <select required name="medAntibioticId" onChange={this.handleChange}>
+                            <option value="">--Antibiotic--</option>
+                            {this.props.medicine.map(med => {
+                                if (med.type === 'antibiotic') {
+                                    return (
+                                        <option key={med.id} value={med.id}>{med.name}</option>
+                                    );
+                                }
+                            })}
                         </select>
 
-                        
-                        <select required name="inputDay">
-                        <option value="" hidden>Pain</option>
-                        <option value="1"> Tramadol</option>
-                        <option value="2"> Buprenorphine</option>
-                        <option value="3"> Metacam</option>
+                        <select required name="medPainRelieverId" onChange={this.handleChange}>
+                            <option value="">--Pain Reliever--</option>
+                            {this.props.medicine.map(med => {
+                                if (med.type === 'pain-reliever') {
+                                    return (
+                                        <option key={med.id} value={med.id}>{med.name}</option>
+                                    );
+                                }
+                            })}
                         </select>
 
-                        
-                        <select required name="inputDay">
-                        <option value="" hidden>Miscellaneous</option>
-                        <option value="1"> Prednisone</option>
-                        <option value="2"> Prilosec(Omeprazole)</option>
-                        <option value="3"> Dexamethasone(Alin)</option>
-                        <option value="4"> Alprazolam (Xanax)</option>
-                        <option value="5"> Baycox(Toltrazuril)</option>
-                        <option value="6"> Versed(Midazolam)</option>
-                        <option value="7"> Capstar(Nitenpryan)</option>
-                        <option value="8"> Simethicone</option>
-                        <option value="9"> Valium(Diazepam)</option>
-                        <option value="10"> Vitamin K</option>
-                        <option value="11"> Diphenhydramine(Benadryl)</option>
+                        <select required name="medMiscId" onChange={this.handleChange}>
+                            <option value="" hidden>--Miscellaneous--</option>
+                            {this.props.medicine.map(med => {
+                                if (med.type === 'misc') {
+                                    return (
+                                        <option key={med.id} value={med.id}>{med.name}</option>
+                                    );
+                                }
+                            })}
                         </select>
 
                         <div className='findMeds'>
@@ -91,6 +95,14 @@ class Dose extends Component {
                 </div>
             </div >
         );
+    }
+
+    render() {
+        if (this.props.medicine) {
+            return this.renderDoseForm();
+        } else {
+            return <Redirect to="/" />
+        }
     }
 }
 

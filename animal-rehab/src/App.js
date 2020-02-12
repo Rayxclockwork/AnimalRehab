@@ -35,8 +35,6 @@ class App extends React.Component {
       medicine: null,
       isLoggedIn: false
     };
-
-    this.animalProfile = this.animalProfile.bind(this);
   }
 
   async componentDidMount() {
@@ -47,10 +45,6 @@ class App extends React.Component {
       animals: animalsResponse.data,
       medicine: medicineResponse.data
     });
-  }
-
-  animalProfile() {
-    console.log('Animal profile');
   }
 
   render() {
@@ -75,9 +69,7 @@ class App extends React.Component {
                 <Route path="/animals/:aid">
                   <AnimalProfile animals={this.state.animals} />
                 </Route>
-
-
-                <Route path="/animals/:aid" render={this.animalProfile} />
+                <Route path="/animals/:aid" />
                 <Route path="/log">
                   <LogIn />
                 </Route>
