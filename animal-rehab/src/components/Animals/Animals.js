@@ -48,8 +48,8 @@ class Animals extends React.Component{
             <td>
               <Link to={`/animals/${animal.id}`}>{animal.name}</Link>
             </td>
-            <td>{animal.entryAt}</td>
-            <td>{animal.exitAt}</td>
+            <td>{animal.entry_at}</td>
+            <td>{animal.exit_at}</td>
           </tr>
         ))}
       </tbody>
