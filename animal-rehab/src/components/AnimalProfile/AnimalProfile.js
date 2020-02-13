@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
 import AnimalProfileForm from './AnimalProfileForm';
+import { Link } from 'react-router-dom';
 
 export default props => {
 
@@ -11,7 +12,9 @@ export default props => {
     return (
       <>
         <h2>{animal.name}</h2>
-        <p>{`${animal.entry_at} - ${animal.exit_at}`}</p>
+        <p>{`${animal.entry_at}`}</p>
+        <button type="submit" onClick= {Date.now()}>Close Out Animal </button>
+        <Link to="/animals" onClick={() => props.handleDeleteAnimal(aid)}>Delete Animal</Link>
         <h3>Data Log Details</h3>
         <AnimalProfileForm
           logCreateHandler={props.logCreateHandler}
@@ -35,4 +38,3 @@ export default props => {
     return <Redirect to="/animals" />;
   }
 }
-
