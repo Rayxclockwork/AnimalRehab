@@ -1,39 +1,45 @@
 import React from 'react';
-import {
-  Link,
-  Redirect,
-  useParams
-} from 'react-router-dom';
-import AnimalProfileForm from './AnimalProfileForm';
+import AnimalProfileChild from './AnimalProfileChild'
 
 
-export default props => {
-  const { aid } = useParams();
-  const animal = props.animals.find(animal => animal.id === parseInt(aid));
-
-  if (animal) {
-    return (
-      <>
-      <h2>{animal.name}</h2>
-      <p>{`${animal.entryAt}`}</p>
-      <button type="submit" onClick= {Date.now()}>Close Out Animal </button>
-      <Link to="/animals" onClick={() => props.handleDeleteAnimal(aid)}>Delete Animal</Link>
-
-      <h3>Medication Details</h3>
-      <form onSubmit={props.submitHandler}>
-        <fieldset>
-            <input name="name" type="text" placeholder="medication details" value={props.medDetails} onChange={props.medDetailsHandler}/>
-            <button>Submit</button>            
-        </fieldset>            
-      </form>  
-      <p>{animal.medDetails}</p>
-      <h3>Data Log Details</h3>
-      <p>{animal.logDetails}</p>
-      <AnimalProfileForm />
-
-      </>
-    );
-  } else {
-    return <Redirect to="/animals" />;
+class AnimalProfile extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      logDetails: [],
+    }
+    this.logCreateHandler = this.logCreateHandler.bind(this);
   }
-};
+
+  logCreateHandler(event, logDetail) {
+    event.preventDefault();
+    const sortedLogs = this.state.logDetails.sort((a,b) => a.id < b.id)
+    let newId
+    if (sortedLogs[0]){
+      newId = sortedLogs[sortedLogs.length-1].id
+    } 
+    else{
+      newId = 1
+    }
+    const newLog = {
+      description: logDetail,
+      date: String(Date()),
+      id: newId
+    }
+    this.setState({
+        logDetails: this.state.logDetails.concat([newLog])
+    }, ()=> console.log(this.state.logDetails))
+
+  }
+  // submitLog(event){
+  //   event.preventDefault();
+    
+  //   this.state.onSubmit(this.state.logDetail);
+  // }
+  
+  render(){
+    return<AnimalProfileChild logDetails = {this.state.logDetails} animals={this.props.animals} logCreateHandler ={this.logCreateHandler}/>
+}
+
+}
+export default AnimalProfile

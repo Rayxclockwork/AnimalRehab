@@ -48,7 +48,7 @@ class App extends React.Component {
     this.animalProfile = this.animalProfile.bind(this);
     this.animalCreateHandler = this.animalCreateHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
-    this.logCreateHandler = this.logCreateHandler.bind(this);
+    // this.logCreateHandler = this.logCreateHandler.bind(this);
     this.medDetailsHandler = this.medDetailsHandler.bind(this);
     this.animalProfile = this.animalProfile.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
@@ -85,15 +85,6 @@ class App extends React.Component {
     })
   }
 
-  logCreateHandler(event) {
-    const newLog = {
-      logDetails: event.target.value,
-      logDate: String(Date()),
-    }
-    this.setState({
-        logDetails: this.state.logDetails.concat([newLog])
-    })
-  }
 
 
   medDetailsHandler(event) {
@@ -169,7 +160,7 @@ class App extends React.Component {
 
   render() {
 
-    let { medicine, animals, logDetails, medDetails } = this.state
+    let { medicine, animals } = this.state
 
     return (
       <Router>
