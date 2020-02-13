@@ -50,6 +50,7 @@ class Animals extends React.Component{
             </td>
             <td>{animal.entry_at.slice(0, 10)}</td>
             <td>{animal.exit_at.slice(0, 10)}</td>
+
           </tr>
         ))}
       </tbody>
