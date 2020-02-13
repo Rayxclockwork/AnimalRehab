@@ -49,6 +49,7 @@ class App extends React.Component {
     this.renderAnimals = this.renderAnimals.bind(this);
     this.handleDeleteAnimal = this.handleDeleteAnimal.bind(this);
     this.logCreateHandler = this.logCreateHandler.bind(this);
+    this.handleDeleteLog = this.handleDeleteLog.bind(this);
   }
 
   async componentDidMount() {
@@ -159,6 +160,14 @@ class App extends React.Component {
     })
 
   }
+  handleDeleteLog(lid){
+    lid = parseInt(lid);
+    const newLogDetails = this.state.logDetails.filter(logDetail => logDetail.id !==lid);
+
+    this.setState({
+      logDetails: newLogDetails
+    })
+  }
 
   renderAnimals(props) {
 
@@ -209,7 +218,8 @@ class App extends React.Component {
                 logDetails={this.state.logDetails}
                 animals={this.state.animals}
                 logCreateHandler={this.logCreateHandler} 
-                handleDeleteAnimal={this.handleDeleteAnimal}/>
+                handleDeleteAnimal={this.handleDeleteAnimal}
+                handleDeleteLog= {this.handleDeleteLog}/>
             </Route>
 
             <Route path="/log">
