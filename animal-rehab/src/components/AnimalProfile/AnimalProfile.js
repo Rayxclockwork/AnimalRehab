@@ -11,12 +11,13 @@ export default props => {
     return (
       <>
       <h2>{animal.name}</h2>
-      <p>{`${animal.entryAt} - ${animal.exitAt}`}</p>
-      <h3>Medication Details</h3>
-      <p>{animal.medDetails}</p>
-      <AnimalProfileForm />
+      <p>{`${animal.entry_at} - ${animal.exit_at}`}</p>
+      {/* <h3>Medication Details</h3>
+      <p>{animal.medDetails}</p> */}
+      
       <h3>Data Log Details</h3>
       <p>{animal.logDetails}</p>
+      <AnimalProfileForm />
 
       </>
     );

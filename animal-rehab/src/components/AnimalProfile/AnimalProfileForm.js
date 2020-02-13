@@ -5,8 +5,8 @@ class AnimalProfileForm extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      logDetails: '',
-      medDetails: ''
+      logDetails: " ",
+      medDetails: " ",
     }
     this.medChangeHandler = this.medChangeHandler.bind(this);
     this.logChangeHandler = this.logChangeHandler.bind(this);
@@ -38,13 +38,17 @@ class AnimalProfileForm extends React.Component{
     <>
     <form onSubmit={this.submitMed}>
         <fieldset>
-            <input name="name" type="text" placeholder="medicine details" value={this.state.medDetails} onChange={this.medChangeHandler}/>
-            <input type="submit" placeholder="submit"/>            
+            <textarea type="medicine details" placeholder="med details" cols=
+            '30' rows ='10' value={this.state.medDetails} onChange={this.medChangeHandler}/>
+            <input type="submit" placeholder="submit"/>        
         </fieldset>            
     </form>  
+    <br>
+
+    </br>
     <form onSubmit={this.submitLog}>
         <fieldset>
-            <input name="name" type="text" placeholder="daily logs" value={this.state.logDetails} onChange={this.logChangeHandler}/>
+            <textarea name="logDetails" type="text" placeholder="daily logs" value={this.state.logDetails} onChange={this.logChangeHandler}/>
             <input type="submit" placeholder="submit"/>            
         </fieldset>            
     </form>  

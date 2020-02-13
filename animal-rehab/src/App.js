@@ -13,6 +13,7 @@ import Home from './components/Home/Home';
 import Dose from './components/Dose/Dose';
 import Medicine from './components/Medicine/Medicine';
 import AnimalProfile from './components/AnimalProfile/AnimalProfile';
+import AnimalProfileForm from './components/AnimalProfile/AnimalProfileForm';
 import Animals from './components/Animals/Animals';
 import LogInForm from './components/LogInForm/LogInForm';
 import Footer from './components/Footer/Footer';
@@ -57,11 +58,9 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    const animalsResponse = await axios.get('/data/animals.json');
     const medicineResponse = await axios.get('/data/medicine.json');
 
     this.setState({
-      animals: animalsResponse.data,
       medicine: medicineResponse.data
     });
   }
@@ -70,14 +69,15 @@ class App extends React.Component {
     console.log('Animal profile');
   }
 
+
   animalCreateHandler(name) {
     const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
     const newId = sortedAnimals[sortedAnimals.length-1].id
     const newAnimal = {
       id : newId,
       name: name,
-      entryAt: String(Date.now()),
-      exitAt: " "
+      entry_at: Date(),
+      exit_at: " "
     }
     console.log(newAnimal);
     this.setState({
@@ -89,7 +89,7 @@ class App extends React.Component {
   logCreateHandler(event) {
     const newLog = {
       logDetails: event.target.value,
-      logDate: String(Date.now()),
+      logDate: String(Date()),
     }
     this.setState({
         logDetails: this.state.logDetails.concat([newLog])
@@ -100,7 +100,7 @@ class App extends React.Component {
   medDetailsHandler(event) {
     const newMedDetails = {
       medDetails: event.target.value,
-      entryDate: String(Date.now()),
+      entryDate: String(Date()),
     }
     this.setState({
         medDetails: this.state.medDetails.concat([newMedDetails])
@@ -114,7 +114,7 @@ class App extends React.Component {
       this.props.onSubmit(data);
   }
 
-
+  
   async loginHandler({access, refresh}) {
     this.setState({
         accessToken : access,
@@ -127,19 +127,18 @@ class App extends React.Component {
                 Authorization: `Bearer ${this.state.accessToken}`
             }
         }
-        const response = await axios.get(url + 'v1/', headers);
-
+        const response = await axios.get(url + 'v1/animals/', headers);
         console.log(response.data);
 
         this.setState({
-            snacks: response.data
+            animals: response.data
         });
 
     } catch (error) {
         console.error('you have an error');
     }
   }
-  
+
   renderAnimals(props) {
 
     if (!this.state.accessToken) {
@@ -155,10 +154,13 @@ class App extends React.Component {
     } else {
         return <Redirect to="/" />
     }
-}
+  }
 
 
   render() {
+
+    let { medicine, animals } = this.state
+
     return (
       <Router>
         <div>
@@ -172,19 +174,24 @@ class App extends React.Component {
                   <Dose />
                 </Route>
                 <Route path="/medicine">
-                  <Medicine medicine={this.state.medicine} />
+                  <Medicine medicine={medicine} />
                 </Route>
                 <Route exact path="/animals">
-                  <Animals animals={this.state.animals} onSubmit={this.animalCreateHandler}/>
+                      {this.state.accessToken ?
+                      <Animals animals={this.state.animals} onSubmit={this.animalCreateHandler}/> :
+                       <LogInForm onSuccess={this.loginHandler} />}
                 </Route>
-                <Route path="/animals/:aid">
-                  <AnimalProfile animals={this.state.animals} />
+                <Route path="/animals/:aid" render={this.renderAnimals}>
+                  <AnimalProfile animals={animals} />
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
 
-                <Route path="/animals/:aid"onSubmit={this.logCreateHandler} render={this.logDetails} />
-                <Route path="/animals/:aid"onSubmit={this.medDetailsHandler} render={this.medDetails} />
-
+                <Route path="/animals/:aid">
+                  <AnimalProfileForm logDetails = {this.state.logDetails} onSubmit={this.logCreateHandler}/>
+                </Route>
+                <Route path="/animals/:aid">
+                  <AnimalProfileForm medDetails = {this.state.medDetails}onSubmit={this.medCreateHandler}/>
+                </Route>
                 <Route path="/log">
                   <LogInForm />
                 </Route>
