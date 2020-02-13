@@ -52,7 +52,7 @@ class App extends React.Component {
     this.animalProfile = this.animalProfile.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
     this.renderAnimals = this.renderAnimals.bind(this);
-
+    this.handleDeleteAnimal = this.handleDeleteAnimal.bind(this);
 
   }
 
@@ -136,6 +136,19 @@ class App extends React.Component {
     }
   }
 
+  handleDeleteAnimal(e, aid) {
+    e.preventDefault();
+
+    aid = parseInt(aid);
+    const newAnimals = this.state.animals.filter(animal => animal.id !== aid);
+
+    this.setState({
+      animals: newAnimals
+    }, () => {
+      return <Redirect to="/animals" />;
+    });
+  }
+
   renderAnimals(props) {
 
     if (!this.state.accessToken) {
@@ -182,7 +195,10 @@ class App extends React.Component {
                   <Animals animals={this.state.animals}/>                     
                 </Route>
                 <Route path="/animals/:aid" render={this.renderAnimals}>
-                  <AnimalProfile animals={animals} />
+                  <AnimalProfile
+                    animals={animals}
+                    handleDeleteAnimal={this.handleDeleteAnimal}
+                  />
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
 
