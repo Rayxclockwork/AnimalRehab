@@ -14,12 +14,19 @@ export default props => {
   if (animal) {
     return (
       <>
-      <h2>{animal.name}</h2>
-      <p>{`${animal.entry_at}`}</p>
-      <button type="submit" onClick= {Date.now()}>Close Out Animal </button>
-      <Link to="/animals" onClick={() => props.handleDeleteAnimal(aid)}>Delete Animal</Link>
+      <h2>Name: {animal.name}
+      </h2>
+      <p>
+        {`Entry Date: ${animal.entry_at.slice(0, 10)}`}
+      </p>
+      <p>
+        <button onClick={() => props.handleDeleteAnimal(aid)}>
+          <Link to="/animals">Delete Animal </Link>
+        </button> or 
+        <button type="submit" onClick= {Date.now()}> Release Animal</button>
+      </p>
 
-      <h3>Medication Details</h3>
+      <h2>Medication Details</h2>
       <form onSubmit={props.submitHandler}>
         <fieldset>
             <input name="name" type="text" placeholder="medication details" value={props.medDetails} onChange={props.medDetailsHandler}/>

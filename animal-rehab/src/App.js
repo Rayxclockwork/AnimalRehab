@@ -207,11 +207,9 @@ class App extends React.Component {
                   <Medicine medicine={medicine} />
                 </Route>
                 <Route exact path="/animals">
-
-                      {this.state.accessToken ?
-                      <Animals animals={this.state.animals} onSubmit={this.animalCreateHandler}/> :
-                      <LogInForm onSuccess={this.loginHandler} />}
-
+                  {this.state.accessToken ?
+                    <Animals animals={this.state.animals} onSubmit={this.animalCreateHandler}/> :
+                    <LogInForm onSuccess={this.loginHandler} />}
                 </Route>
                 <Route path="/animals/:aid" render={this.renderAnimals}>
                   <AnimalProfile
@@ -225,9 +223,11 @@ class App extends React.Component {
                 <Route path="/animals/:aid">
                   <AnimalProfileForm medDetails = {this.state.medDetails} onSubmit={this.medCreateHandler}/>
                 </Route>
-
+                  {this.state.accessToken ?
+                    <Animals animals={this.state.animals} onSubmit={this.animalCreateHandler}/> :
+                    <LogInForm onSuccess={this.loginHandler} />}
                 <Route path="/log">
-                  <LogInForm />
+                  
                 </Route>
                 
               </Switch>
@@ -245,8 +245,8 @@ function Nav(props) {
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/dose">Dose</NavLink></li>
           <li><NavLink to="/medicine">Medicine</NavLink></li>
-          <li><NavLink to="/animals">Animals</NavLink></li>
-          <li><NavLink to="/log">Log in</NavLink></li>
+          <li><NavLink to="/animals">Animals</NavLink></li>        
+          <li><NavLink to="/log">Log in</NavLink></li> 
           </ul>
       </nav>
   )
