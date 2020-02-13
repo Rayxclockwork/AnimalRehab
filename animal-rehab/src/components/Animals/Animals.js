@@ -12,7 +12,7 @@ export default props => (
             <button>Submit</button>            
         </fieldset>            
     </form>  
-           
+        
     <table>
       <thead>
         <tr>
@@ -29,8 +29,8 @@ export default props => (
             <td>
               <Link to={`/animals/${animal.id}`}>{animal.name}</Link>
             </td>
-            <td>{animal.entry_at}</td>
-            <td>{animal.exit_at}</td>
+            <td>{animal.entry_at.slice(0, 10)}</td>
+            <td>{animal.exit_at.slice(0, 10)}</td>
           </tr>
         ))}
       </tbody>
