@@ -66,25 +66,43 @@ class App extends React.Component {
     console.log('Animal profile');
   }
 
+  formatDate = () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+      
+    if (dd < 10) {
+      dd = '0' + dd;
+    } 
+    if (mm < 10) {
+      mm = '0' + mm;
+    } 
+      var today = yyyy + '-' + mm + '-' + dd;
+      return today
+    }
+
   animalCreateHandler(name) {
     const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
     const newId = sortedAnimals[sortedAnimals.length-1].id
-    const newAnimal = {
-      id : newId,
-      name: name,
-      entryAt: String(Date.now()),
-      exitAt: " "
+    if (name) {
+      const newAnimal = {
+        id : newId,
+        name: name,
+        entry_at: this.formatDate(),
+        exit_at: " "
+      }
+      console.log(newAnimal);
+      this.setState({
+          animals: this.state.animals.concat([newAnimal])
+      })
     }
-    console.log(newAnimal);
-    this.setState({
-        animals: this.state.animals.concat([newAnimal])
-    })
   }
 
   logCreateHandler(event) {
     const newLog = {
       logDetails: event.target.value,
-      logDate: String(Date.now()),
+      logDate: this.formatDate(),
     }
     this.setState({
         logDetails: this.state.logDetails.concat([newLog])
@@ -95,7 +113,7 @@ class App extends React.Component {
   medDetailsHandler(event) {
     const newMedDetails = {
       medDetails: event.target.value,
-      entryDate: String(Date.now()),
+      entryDate: this.formatDate(),
     }
     this.setState({
         medDetails: this.state.medDetails.concat([newMedDetails])
@@ -154,7 +172,7 @@ class App extends React.Component {
 
   render() {
 
-    let { medicine, animals, logDetails, medDetails } = this.state
+    let { medicine, animals } = this.state
 
     return (
       <Router>
