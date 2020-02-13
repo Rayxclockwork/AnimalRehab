@@ -182,8 +182,8 @@ class App extends React.Component {
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
 
-                <Route path="/animals/:aid"onSubmit={this.state.logDetails.onSubmit} render={this.logDetails} />
-                <Route path="/animals/:aid"onSubmit={this.state.medDetails.onSubmit} render={this.medDetails} />
+                <Route path="/animals/:aid"onSubmit={this.logCreateHandler} render={this.logDetails} />
+                <Route path="/animals/:aid"onSubmit={this.medDetailsHandler} render={this.medDetails} />
 
                 <Route path="/log">
                   <LogInForm />

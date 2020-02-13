@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
+import AnimalProfileForm from './AnimalProfileForm';
 
 
 export default props => {
@@ -10,30 +11,16 @@ export default props => {
     return (
       <>
       <h2>{animal.name}</h2>
-      <p>{`${animal.entryAt}`}</p>
-      <button type="submit" onClick= {Date.now()}>Close Out Animal </button>
-    
-
+      <p>{`${animal.entryAt} - ${animal.exitAt}`}</p>
       <h3>Medication Details</h3>
-      <form onSubmit={props.submitHandler}>
-        <fieldset>
-            <input name="name" type="text" placeholder="medication details" value={props.medDetails} onChange={props.medDetailsHandler}/>
-            <button>Submit</button>            
-        </fieldset>            
-      </form>  
       <p>{animal.medDetails}</p>
+      <AnimalProfileForm />
       <h3>Data Log Details</h3>
-      <form onSubmit={props.submitHandler}>
-        <fieldset>
-            <input name="name" type="text" placeholder="daily log" value={props.logDetails} onChange={props.logCreateHandler}/>
-            <button>Submit</button>            
-        </fieldset>            
-      </form>  
       <p>{animal.logDetails}</p>
+
       </>
     );
   } else {
-    // return <Redirect to="/animals" />;
-    return null
+    return <Redirect to="/animals" />;
   }
 };
