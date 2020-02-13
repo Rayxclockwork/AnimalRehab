@@ -209,7 +209,9 @@ class App extends React.Component {
                 logDetails={this.state.logDetails}
                 animals={this.state.animals}
                 logCreateHandler={this.logCreateHandler} 
+
                 handleDeleteAnimal={this.handleDeleteAnimal}/>
+
             </Route>
 
             <Route path="/log">
@@ -217,6 +219,8 @@ class App extends React.Component {
             </Route>
 
           </Switch>
+      
+      
           <Footer />
         </div>
       </Router>
