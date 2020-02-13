@@ -144,7 +144,7 @@ class App extends React.Component {
     const sortedLogs = this.state.logDetails.sort((a, b) => a.id < b.id)
     let newId
     if (sortedLogs[0]) {
-      newId = sortedLogs[sortedLogs.length - 1].id
+      newId = sortedLogs[sortedLogs.length - 1].id + 1
     }
     else {
       newId = 1
