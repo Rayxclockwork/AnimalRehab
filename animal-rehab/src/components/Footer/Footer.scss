@@ -6,13 +6,14 @@
     background-color: teal;
     justify-content: center;
     margin: auto;
-    height: 150px;
-    line-height: 2em;
+    height: 100px;
+    line-height: 1.5em;
     position: absolute;
 }
 
 .footer > p {
     align-items: center;
-    max-width: 900px;
+    max-width: 950px;
     margin:auto;
+    font-weight: bold;
 }
