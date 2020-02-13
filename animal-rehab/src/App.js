@@ -174,7 +174,7 @@ class App extends React.Component {
                 <Route exact path="/animals">
       
                     {this.state.accessToken ?
-                      <Animals animals={animals} onSubmit={this.animalCreateHandler :
+                      <Animals animals={animals} onSubmit={this.animalCreateHandler}/> :
                       <LogInForm onSuccess={this.loginHandler} />}
 
                 </Route>
