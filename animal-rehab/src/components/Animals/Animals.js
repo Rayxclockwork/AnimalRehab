@@ -1,15 +1,34 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+class Animals extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      name: ''
+    }
+    this.changeHandler = this.changeHandler.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+  }
 
+  changeHandler(event){
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+  submitForm(event){
+    event.preventDefault();
+    this.props.onSubmit(this.state.name);
+  }
 
-export default props => (
-  <>
-    <h1>Animals currently in care: {props.animals.length}</h1>
-    <form onSubmit={props.submitHandler}>
+  render(){
+    return(
+    <>
+    <h1>Animals currently in care: {this.props.animals.length}</h1>
+    <form onSubmit={this.submitForm}>
         <fieldset>
-            <input name="name" type="text" placeholder="animal" value={props.animal} onChange={props.animalCreateHandler}/>
-            <button>Submit</button>            
+            <input name="name" type="text" placeholder="animal" value={this.state.name} onChange={this.changeHandler}/>
+            <input type="submit" placeholder="submit"/>            
         </fieldset>            
     </form>  
            
@@ -23,7 +42,7 @@ export default props => (
         </tr>
       </thead>
       <tbody>
-        {props.animals.map(animal => (
+        {this.props.animals.map(animal => (
           <tr key={animal.id}>
             <td>{animal.id}</td>
             <td>
@@ -36,4 +55,7 @@ export default props => (
       </tbody>
     </table>
   </>
-);
+)
+ }
+  }
+export default Animals
