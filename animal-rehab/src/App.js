@@ -53,6 +53,8 @@ class App extends React.Component {
     this.animalProfile = this.animalProfile.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
     this.renderAnimals = this.renderAnimals.bind(this);
+    this.handleDeleteAnimal = this.handleDeleteAnimal.bind(this);
+
   }
 
   async componentDidMount() {
@@ -136,6 +138,17 @@ class App extends React.Component {
     }
   }
 
+  handleDeleteAnimal(aid) {
+    // Redirect to /animals as part of deletion
+
+    aid = parseInt(aid);
+    const newAnimals = this.state.animals.filter(animal => animal.id !== aid);
+
+    this.setState({
+      animals: newAnimals
+    });
+  }
+
   renderAnimals(props) {
 
     if (!this.state.accessToken) {
@@ -181,7 +194,10 @@ class App extends React.Component {
 
                 </Route>
                 <Route path="/animals/:aid" render={this.renderAnimals}>
-                  <AnimalProfile animals={animals} />
+                  <AnimalProfile
+                    animals={animals}
+                    handleDeleteAnimal={this.handleDeleteAnimal}
+                  />
                 </Route>
                 <Route path="/animals/:aid">
                   <AnimalProfileForm logDetails = {this.state.logDetails} onSubmit={this.logCreateHandler}/>
