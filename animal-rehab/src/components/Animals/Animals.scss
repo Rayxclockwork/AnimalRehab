@@ -14,3 +14,24 @@
 	justify-content: center;
 }
 
+table {
+    margin-left:auto; 
+	margin-right:auto;
+	border: 2px solid black;
+	margin-top: 3em;
+}
+
+fieldset {
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+th {
+	background-color:lightsteelblue;
+	border: 1px solid black;
+}
+
+td {
+	background-color: whitesmoke;
+	border: 1px solid black;
+}

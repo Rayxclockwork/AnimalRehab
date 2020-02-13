@@ -4,6 +4,7 @@ import {
   Redirect,
   useParams
 } from 'react-router-dom';
+import AnimalProfileForm from './AnimalProfileForm';
 
 
 export default props => {
@@ -27,17 +28,12 @@ export default props => {
       </form>  
       <p>{animal.medDetails}</p>
       <h3>Data Log Details</h3>
-      <form onSubmit={props.submitHandler}>
-        <fieldset>
-            <input name="name" type="text" placeholder="daily log" value={props.logDetails} onChange={props.logCreateHandler}/>
-            <button>Submit</button>            
-        </fieldset>            
-      </form>  
       <p>{animal.logDetails}</p>
+      <AnimalProfileForm />
+
       </>
     );
   } else {
-    // return <Redirect to="/animals" />;
-    return null
+    return <Redirect to="/animals" />;
   }
 };
