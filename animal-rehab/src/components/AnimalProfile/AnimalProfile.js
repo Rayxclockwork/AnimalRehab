@@ -1,46 +1,38 @@
 import React from 'react';
-import AnimalProfileChild from './AnimalProfileChild'
+import { Redirect, useParams } from 'react-router-dom';
+import AnimalProfileForm from './AnimalProfileForm';
 
+export default props => {
 
-class AnimalProfile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      logDetails: [],
-    }
-    this.logCreateHandler = this.logCreateHandler.bind(this);
-  }
+  const { aid } = useParams();
+  const animal = props.animals.find(animal => animal.id === parseInt(aid));
 
-
-  logCreateHandler(event, logDetail) {
-    event.preventDefault();
-    const sortedLogs = this.state.logDetails.sort((a, b) => a.id < b.id)
-    let newId
-    if (sortedLogs[0]) {
-      newId = sortedLogs[sortedLogs.length - 1].id
-    }
-    else {
-      newId = 1
-    }
-    const newLog = {
-      description: logDetail,
-      date: String(Date()),
-      id: newId
-    }
-    this.setState({
-      logDetails: this.state.logDetails.concat([newLog])
-    }, () => console.log(this.state.logDetails))
-
-  }
-
-  render() {
+  if (animal) {
     return (
-      <AnimalProfileChild
-        logDetails={this.state.logDetails}
-        animals={this.props.animals}
-        logCreateHandler={this.logCreateHandler} />
+      <>
+        <h2>{animal.name}</h2>
+        <p>{`${animal.entry_at} - ${animal.exit_at}`}</p>
+        <h3>Data Log Details</h3>
+        <AnimalProfileForm
+          logCreateHandler={props.logCreateHandler}
+          animal={animal}
+        />
+        <section>
+          {props.logDetails.map(logDetail => {
+            if (logDetail.aid === animal.id) {
+              return (
+                <section>
+                  <p>{logDetail.date}</p>
+                  <p>{logDetail.description}</p>
+                </section>
+              );
+            }
+          })}
+        </section>
+      </>
     );
+  } else {
+    return <Redirect to="/animals" />;
   }
-
 }
-export default AnimalProfile
+

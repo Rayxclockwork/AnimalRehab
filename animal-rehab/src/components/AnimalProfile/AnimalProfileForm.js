@@ -1,5 +1,4 @@
 import React from "react";
-// import { Link } from 'react-router-dom';
 
 class AnimalProfileForm extends React.Component{
   constructor(props){
@@ -20,7 +19,7 @@ class AnimalProfileForm extends React.Component{
   render() {
     return (
       <>
-        <form onSubmit={(event)=> this.props.logCreateHandler(event,this.state.logDetail)}>
+        <form onSubmit={(event)=> this.props.logCreateHandler(event,this.state.logDetail, this.props.animal.id)}>
           <fieldset>
             <textarea name="logDetail" type="text" placeholder="daily logs" value={this.state.logDetails} onChange={this.logChangeHandler} />
             <input type="submit" placeholder="submit" />
