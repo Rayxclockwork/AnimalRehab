@@ -166,7 +166,7 @@ class App extends React.Component {
                   <Home />
                 </Route>
                 <Route path="/dose">
-                  <Dose />
+                  <Dose medicine={this.state.medicine} />
                 </Route>
                 <Route path="/medicine">
                   <Medicine medicine={medicine} />
@@ -181,10 +181,8 @@ class App extends React.Component {
                 <Route path="/animals/:aid" render={this.renderAnimals}>
                   <AnimalProfile animals={animals} />
                 </Route>
-                <Route path="/animals/:aid" render={this.animalProfile} />
 
-                <Route path="/animals/:aid"onSubmit={logDetails.onSubmit} render={this.logDetails} />
-                <Route path="/animals/:aid"onSubmit={medDetails.onSubmit} render={this.medDetails} />
+                <Route path="/animals/:aid" />
 
                 <Route path="/log">
                   <LogInForm />
