@@ -18,10 +18,7 @@
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 ![Wireframes](/assets/wireframes.jpg)
-
-![Models](/assets/wireframes.jpg)
-
-##
+![Models](/assets/models.jpg)
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. This is also an area which you can include any visuals; flow charts, example usage gifs, screen captures, etc.-->
@@ -59,4 +56,3 @@ Django Deployment - Digital Ocean
 -->
 * 2/7/20 Repo Initialized
 * 2/10/20 Models being served
-en
