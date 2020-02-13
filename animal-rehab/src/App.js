@@ -27,6 +27,7 @@ import './components/Footer/Footer.scss';
 import './components/Header/Header.scss';
 import './components/LogInForm/LogInForm.scss';
 
+
 const url = 'http://64.225.2.201:8000/api/';
 
 class App extends React.Component {
@@ -36,13 +37,23 @@ class App extends React.Component {
     this.state = {
       animals: [],
       medicine: [],
+      isLoggedIn: false,
+      medDetails: [],
+      logDetails: [],
       accessToken: '',
       refreshToken:'',
     };
 
     this.animalProfile = this.animalProfile.bind(this);
+    this.animalCreateHandler = this.animalCreateHandler.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
+    this.logCreateHandler = this.logCreateHandler.bind(this);
+    this.medDetailsHandler = this.medDetailsHandler.bind(this);
+    this.animalProfile = this.animalProfile.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
     this.renderAnimals = this.renderAnimals.bind(this);
+
+
   }
 
   async componentDidMount() {
@@ -57,6 +68,50 @@ class App extends React.Component {
     console.log('Animal profile');
   }
 
+  animalCreateHandler(event) {
+    const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
+    const newId = sortedAnimals[sortedAnimals.length-1].id
+    const newAnimal = {
+      id : newId,
+      name: event.target.value,
+      entryAt: String(Date.now()),
+      exitAt: " "
+    }
+    this.setState({
+        animals: this.state.animals.concat([newAnimal])
+    })
+  }
+
+
+  logCreateHandler(event) {
+    const newLog = {
+      logDetails: event.target.value,
+      logDate: String(Date.now()),
+    }
+    this.setState({
+        logDetails: this.state.logDetails.concat([newLog])
+    })
+  }
+
+
+  medDetailsHandler(event) {
+    const newMedDetails = {
+      medDetails: event.target.value,
+      entryDate: String(Date.now()),
+    }
+    this.setState({
+        medDetails: this.state.medDetails.concat([newMedDetails])
+    })
+  }
+
+
+  submitHandler(event) {
+      event.preventDefault();
+      const data = {...this.state};
+      this.props.onSubmit(data);
+  }
+
+  
   async loginHandler({access, refresh}) {
     this.setState({
         accessToken : access,
@@ -98,6 +153,7 @@ class App extends React.Component {
     }
   }
 
+
   render() {
 
     let { medicine, animals } = this.state
@@ -118,17 +174,25 @@ class App extends React.Component {
                   <Medicine medicine={medicine} />
                 </Route>
                 <Route exact path="/animals">
+
                     {this.state.accessToken ?
                       <Animals animals={animals} onSubmit={this.addAnimal} /> :
-                      <LogInForm onSuccess={this.loginHandler} />}
+                       <LogInForm onSuccess={this.loginHandler} />}
+
+                  <Animals animals={this.state.animals}/>                     
                 </Route>
                 <Route path="/animals/:aid" render={this.renderAnimals}>
                   <AnimalProfile animals={animals} />
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
+
+                <Route path="/animals/:aid"onSubmit={this.state.logDetails.onSubmit} render={this.logDetails} />
+                <Route path="/animals/:aid"onSubmit={this.state.medDetails.onSubmit} render={this.medDetails} />
+
                 <Route path="/log">
                   <LogInForm />
                 </Route>
+                
               </Switch>
             <Footer/>
         </div>
