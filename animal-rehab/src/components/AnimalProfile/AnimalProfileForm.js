@@ -38,7 +38,7 @@ class AnimalProfileForm extends React.Component{
     <>
     <form onSubmit={this.submitMed}>
         <fieldset>
-            <textarea type="medicine details" placeholder="med details" cols=
+            <textarea name = " medicine details" type="text" placeholder="med details" cols=
             '30' rows ='10' value={this.state.medDetails} onChange={this.medChangeHandler}/>
             <input type="submit" placeholder="submit"/>        
         </fieldset>            

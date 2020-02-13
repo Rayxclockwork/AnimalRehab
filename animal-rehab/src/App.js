@@ -76,7 +76,7 @@ class App extends React.Component {
     const newAnimal = {
       id : newId,
       name: name,
-      entry_at: Date(),
+      entry_at: String(Date()),
       exit_at: " "
     }
     console.log(newAnimal);
@@ -190,7 +190,7 @@ class App extends React.Component {
                   <AnimalProfileForm logDetails = {this.state.logDetails} onSubmit={this.logCreateHandler}/>
                 </Route>
                 <Route path="/animals/:aid">
-                  <AnimalProfileForm medDetails = {this.state.medDetails}onSubmit={this.medCreateHandler}/>
+                  <AnimalProfileForm medDetails = {this.state.medDetails} onSubmit={this.medCreateHandler}/>
                 </Route>
                 <Route path="/log">
                   <LogInForm />
