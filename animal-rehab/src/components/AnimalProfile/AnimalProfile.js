@@ -11,6 +11,7 @@ class AnimalProfile extends React.Component{
     this.logCreateHandler = this.logCreateHandler.bind(this);
   }
 
+
   logCreateHandler(event, logDetail) {
     event.preventDefault();
     const sortedLogs = this.state.logDetails.sort((a,b) => a.id < b.id)

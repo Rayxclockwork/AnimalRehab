@@ -43,9 +43,10 @@ class LoginForm extends Component {
         return (
         <>        
             <form  className='RegisterUser' onSubmit={this.obtainTokens}>
-                <input name="username" type="text" value={this.state.username} placeholder="username" onChange={this.changeHandler}/>
-                <input name="password" type="password" value={this.state.password} placeholder="password" onChange={this.changeHandler}/>
-                <input type="submit" placeholder="submit"/>
+                <h1>Login</h1>
+                <input className='username' name="username" type="text" value={this.state.username} placeholder="username" onChange={this.changeHandler}/>
+                <input className='password' name="password" type="password" value={this.state.password} placeholder="password" onChange={this.changeHandler}/>
+                <input className='button' type="submit" placeholder="submit"/>
             </form>
         </> 
         
