@@ -25,8 +25,8 @@ import './components/Dose/Dose.scss';
 import './components/Medicine/Medicine.scss';
 import './components/Animals/Animals.scss';
 import './components/Footer/Footer.scss';
-import './components/Header/Header.scss';
 import './components/LogInForm/LogInForm.scss';
+import './components/Header/Header.scss';
 
 
 const url = 'http://64.225.2.201:8000/api/';
