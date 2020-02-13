@@ -41,7 +41,7 @@ class App extends React.Component {
       medDetails: [],
       logDetails: [],
       accessToken: '',
-      refreshToken:'',
+      refreshToken:''
     };
 
     this.animalProfile = this.animalProfile.bind(this);
@@ -84,8 +84,9 @@ class App extends React.Component {
 
   animalCreateHandler(name) {
 
-    const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
-    const newId = sortedAnimals[sortedAnimals.length-1].id
+    // const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
+    // const newId = sortedAnimals[sortedAnimals.length-1].id
+    const newId = this.state.animals.length + 1
     if (name) {
       const newAnimal = {
         id : newId,
@@ -95,7 +96,8 @@ class App extends React.Component {
       }
       console.log(newAnimal);
       this.setState({
-          animals: this.state.animals.concat([newAnimal])
+          animals: this.state.animals.concat([newAnimal]),
+          id: newId 
       })
     }
   }
