@@ -31,7 +31,7 @@ class Animals extends React.Component{
             <input type="submit" placeholder="submit"/>            
         </fieldset>            
     </form>  
-           
+        
     <table>
       <thead>
         <tr>
@@ -48,8 +48,8 @@ class Animals extends React.Component{
             <td>
               <Link to={`/animals/${animal.id}`}>{animal.name}</Link>
             </td>
-            <td>{animal.entry_at}</td>
-            <td>{animal.exit_at}</td>
+            <td>{animal.entry_at.slice(0, 10)}</td>
+            <td>{animal.exit_at.slice(0, 10)}</td>
           </tr>
         ))}
       </tbody>

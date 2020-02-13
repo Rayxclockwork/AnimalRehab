@@ -52,8 +52,6 @@ class App extends React.Component {
     this.animalProfile = this.animalProfile.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
     this.renderAnimals = this.renderAnimals.bind(this);
-
-
   }
 
   async componentDidMount() {
@@ -82,7 +80,6 @@ class App extends React.Component {
         animals: this.state.animals.concat([newAnimal])
     })
   }
-
 
   logCreateHandler(event) {
     const newLog = {
@@ -157,7 +154,7 @@ class App extends React.Component {
 
   render() {
 
-    let { medicine, animals } = this.state
+    let { medicine, animals, logDetails, medDetails } = this.state
 
     return (
       <Router>
@@ -175,12 +172,10 @@ class App extends React.Component {
                   <Medicine medicine={medicine} />
                 </Route>
                 <Route exact path="/animals">
-
-
-
+      
                     {this.state.accessToken ?
-                      <Animals animals={animals} onSubmit={this.animalCreateHandler} /> :
-                       <LogInForm onSuccess={this.loginHandler} />}               
+                      <Animals animals={animals} onSubmit={this.animalCreateHandler :
+                      <LogInForm onSuccess={this.loginHandler} />}
 
                 </Route>
                 <Route path="/animals/:aid" render={this.renderAnimals}>
@@ -188,8 +183,8 @@ class App extends React.Component {
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
 
-                <Route path="/animals/:aid"onSubmit={this.state.logDetails.onSubmit} render={this.logDetails} />
-                <Route path="/animals/:aid"onSubmit={this.state.medDetails.onSubmit} render={this.medDetails} />
+                <Route path="/animals/:aid"onSubmit={logDetails.onSubmit} render={this.logDetails} />
+                <Route path="/animals/:aid"onSubmit={medDetails.onSubmit} render={this.medDetails} />
 
                 <Route path="/log">
                   <LogInForm />
