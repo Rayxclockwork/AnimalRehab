@@ -46,27 +46,15 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    const animalsResponse = await axios.get('/data/animals.json');
     const medicineResponse = await axios.get('/data/medicine.json');
 
     this.setState({
-      animals: animalsResponse.data,
       medicine: medicineResponse.data
     });
   }
 
   animalProfile() {
     console.log('Animal profile');
-  }
-
-  async componentDidMount() {
-    const animalsResponse = await axios.get('/data/animals.json');
-    const medicineResponse = await axios.get('/data/medicine.json');
-
-    this.setState({
-      animals: animalsResponse.data,
-      medicine: medicineResponse.data
-    });
   }
 
   async loginHandler({access, refresh}) {
@@ -81,19 +69,18 @@ class App extends React.Component {
                 Authorization: `Bearer ${this.state.accessToken}`
             }
         }
-        const response = await axios.get(url + 'v1/', headers);
-
+        const response = await axios.get(url + 'v1/animals/', headers);
         console.log(response.data);
 
         this.setState({
-            snacks: response.data
+            animals: response.data
         });
 
     } catch (error) {
         console.error('you have an error');
     }
   }
-  
+
   renderAnimals(props) {
 
     if (!this.state.accessToken) {
@@ -109,9 +96,12 @@ class App extends React.Component {
     } else {
         return <Redirect to="/" />
     }
-}
+  }
 
   render() {
+
+    let { medicine, animals } = this.state
+
     return (
       <Router>
         <div>
@@ -125,15 +115,15 @@ class App extends React.Component {
                   <Dose />
                 </Route>
                 <Route path="/medicine">
-                  <Medicine medicine={this.state.medicine} />
+                  <Medicine medicine={medicine} />
                 </Route>
                 <Route exact path="/animals">
                     {this.state.accessToken ?
-                      <Animals animals={this.state.animals} /> :
+                      <Animals animals={animals} onSubmit={this.addAnimal} /> :
                       <LogInForm onSuccess={this.loginHandler} />}
                 </Route>
-                <Route path="/animals/:aid">
-                  <AnimalProfile animals={this.state.animals} />
+                <Route path="/animals/:aid" render={this.renderAnimals}>
+                  <AnimalProfile animals={animals} />
                 </Route>
                 <Route path="/animals/:aid" render={this.animalProfile} />
                 <Route path="/log">
