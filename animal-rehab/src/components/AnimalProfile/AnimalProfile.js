@@ -16,7 +16,7 @@ export default props => {
       <h2>{animal.name}</h2>
       <p>{`${animal.entryAt}`}</p>
       <button type="submit" onClick= {Date.now()}>Close Out Animal </button>
-      <Link to="/animals" onClick={(e) => props.handleDeleteAnimal(e, aid)}>Delete Animal</Link>
+      <Link to="/animals" onClick={() => props.handleDeleteAnimal(aid)}>Delete Animal</Link>
 
       <h3>Medication Details</h3>
       <form onSubmit={props.submitHandler}>

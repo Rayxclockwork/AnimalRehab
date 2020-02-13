@@ -136,16 +136,14 @@ class App extends React.Component {
     }
   }
 
-  handleDeleteAnimal(e, aid) {
-    e.preventDefault();
+  handleDeleteAnimal(aid) {
+    // Redirect to /animals as part of deletion
 
     aid = parseInt(aid);
     const newAnimals = this.state.animals.filter(animal => animal.id !== aid);
 
     this.setState({
       animals: newAnimals
-    }, () => {
-      return <Redirect to="/animals" />;
     });
   }
 
