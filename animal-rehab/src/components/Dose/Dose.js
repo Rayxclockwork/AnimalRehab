@@ -81,7 +81,7 @@ class Dose extends Component {
                         </div>
                         <div className='waterDilution'>
                             <label htmlFor='dilution'>Water Dilution (cc)</label>
-                            <input defaultValue='100' type='int' ref={this.input} className='' placeholder='Water Dilution' type='text' name='dilution' noValidate onChange={this.handleChange}>
+                            <input type='int' ref={this.input} className='' placeholder='Water Dilution' type='text' name='dilution' noValidate onChange={this.handleChange}>
                             </input>
                         </div>
                         
