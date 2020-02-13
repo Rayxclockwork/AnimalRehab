@@ -19,6 +19,7 @@ class Animals extends React.Component{
   submitForm(event){
     event.preventDefault();
     this.props.onSubmit(this.state.name);
+    this.setState({ name: '' })
   }
 
   render(){

@@ -83,6 +83,7 @@ class App extends React.Component {
     }
 
   animalCreateHandler(name) {
+
     const sortedAnimals = this.state.animals.sort((a,b) => a.id < b.id)
     const newId = sortedAnimals[sortedAnimals.length-1].id
     if (name) {
