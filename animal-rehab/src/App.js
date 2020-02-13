@@ -208,7 +208,8 @@ class App extends React.Component {
               <AnimalProfile
                 logDetails={this.state.logDetails}
                 animals={this.state.animals}
-                logCreateHandler={this.logCreateHandler} />
+                logCreateHandler={this.logCreateHandler} 
+                handleDeleteAnimal={this.handleDeleteAnimal}/>
             </Route>
 
             <Route path="/log">
