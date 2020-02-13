@@ -15,7 +15,7 @@ export default props => {
     return (
       <>
       <h2>{animal.name}</h2>
-      <p>{`${animal.entryAt}`}</p>
+      <p>{`${animal.entry_at}`}</p>
       <button type="submit" onClick= {Date.now()}>Close Out Animal </button>
       <Link to="/animals" onClick={() => props.handleDeleteAnimal(aid)}>Delete Animal</Link>
 
