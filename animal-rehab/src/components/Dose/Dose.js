@@ -66,7 +66,7 @@ class Dose extends Component {
         return (
             <div className='wrapper'>
                 <div className='form-wrapper'>
-                    <h1>Find Meds</h1>
+                    <h1>Calculate Dosage</h1>
 
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className='animalType'>
@@ -119,7 +119,7 @@ class Dose extends Component {
                         </select>
 
                         <div className='findMeds'>
-                            <button type='submit'>Find Meds</button>
+                            <button type='submit'>Calculate</button>
                         </div>
                     </form>
                 </div>
