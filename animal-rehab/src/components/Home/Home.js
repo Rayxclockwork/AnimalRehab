@@ -2,7 +2,6 @@ import React from "react";
 import squirrel from './squirrelparkour.jpeg'
 import skunk from './BabySkunk.jpg'
 import chipmunk from './chipmunk.jpg'
-import mouse from './fieldmouse.jpg'
 import unknown from './unknowncuteanimal.jpg'
 
 class Home extends React.Component {
@@ -19,7 +18,6 @@ class Home extends React.Component {
             <img src={squirrel} align="middle" height= '250'alt="squirrel" />
             <img src={skunk} align="middle" height= '250'alt="skunk" />
             <img src={chipmunk} align="middle" height= '250'alt="chipmunk" />
-            <img src={mouse} align="middle" height= '250'alt="Mouse" />
             <img src={unknown} align="middle" height= '250'alt="unknown" />
         </div>
         </>
