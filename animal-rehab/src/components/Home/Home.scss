@@ -1,4 +1,11 @@
 .footer{
-	position: fixed;
+	position: relative;
 	bottom: 1px;
+}
+
+.homepage{
+	p{
+		max-width: 750px;
+		line-height: 1.5em;
+	}
 }
