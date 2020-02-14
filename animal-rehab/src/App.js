@@ -196,6 +196,7 @@ class App extends React.Component {
         <div>
           <Header />
           <Nav />
+          <Footer />
           <Switch>
             <Route exact path="/">
               <Home />
@@ -229,7 +230,7 @@ class App extends React.Component {
           </Switch>
       
       
-          <Footer />
+          
         </div>
       </Router>
     );

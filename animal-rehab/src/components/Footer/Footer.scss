@@ -1,5 +1,4 @@
 .footer {
-    bottom: 0;
     width: 100%;
     color: black;
     text-align: center;
@@ -8,7 +7,7 @@
     margin: auto;
     height: 100px;
     line-height: 1.5em;
-    position: fixed;
+    position: relative;
 }
 
 .footer > p {
