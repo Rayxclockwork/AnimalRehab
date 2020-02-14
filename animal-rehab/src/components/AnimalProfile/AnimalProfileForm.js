@@ -31,7 +31,7 @@ class AnimalProfileForm extends React.Component {
           
         }}>
           <fieldset>
-            <textarea name="logDetail" type="text" placeholder="daily logs" value={this.state.logDetails} onChange={this.logChangeHandler} />
+            <textarea name="logDetail" type="text" placeholder="daily logs" value={this.state.logDetail} onChange={this.logChangeHandler} />
             <input type="submit" placeholder="submit" />
           </fieldset>
         </form>
