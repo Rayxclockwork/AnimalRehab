@@ -49,6 +49,7 @@ class App extends React.Component {
     this.renderAnimals = this.renderAnimals.bind(this);
     this.handleDeleteAnimal = this.handleDeleteAnimal.bind(this);
     this.logCreateHandler = this.logCreateHandler.bind(this);
+    this.handleDeleteLog = this.handleDeleteLog.bind(this);
   }
 
   async componentDidMount() {
@@ -143,7 +144,7 @@ class App extends React.Component {
     const sortedLogs = this.state.logDetails.sort((a, b) => a.id < b.id)
     let newId
     if (sortedLogs[0]) {
-      newId = sortedLogs[sortedLogs.length - 1].id
+      newId = sortedLogs[sortedLogs.length - 1].id + 1
     }
     else {
       newId = 1
@@ -158,6 +159,14 @@ class App extends React.Component {
       logDetails: this.state.logDetails.concat([newLog])
     })
 
+  }
+  handleDeleteLog(lid){
+    lid = parseInt(lid);
+    const newLogDetails = this.state.logDetails.filter(logDetail => logDetail.id !==lid);
+
+    this.setState({
+      logDetails: newLogDetails
+    })
   }
 
   renderAnimals(props) {
@@ -209,7 +218,8 @@ class App extends React.Component {
                 logDetails={this.state.logDetails}
                 animals={this.state.animals}
                 logCreateHandler={this.logCreateHandler} 
-                handleDeleteAnimal={this.handleDeleteAnimal}/>
+                handleDeleteAnimal={this.handleDeleteAnimal}
+                handleDeleteLog= {this.handleDeleteLog}/>
             </Route>
 
             <Route path="/log">
@@ -217,6 +227,8 @@ class App extends React.Component {
             </Route>
 
           </Switch>
+      
+      
           <Footer />
         </div>
       </Router>

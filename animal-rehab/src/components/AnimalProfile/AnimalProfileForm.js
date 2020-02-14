@@ -1,25 +1,35 @@
 import React from "react";
 
-class AnimalProfileForm extends React.Component{
-  constructor(props){
+class AnimalProfileForm extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       logDetail: '',
     }
-  
+
     this.logChangeHandler = this.logChangeHandler.bind(this);
+    this.stateDefault=this.stateDefault.bind(this);
   }
 
-  logChangeHandler(event){
+  logChangeHandler(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
-  
+  stateDefault(){
+    this.setState({
+      logDetail: '',
+    })
+  }
+
   render() {
     return (
       <>
-        <form onSubmit={(event)=> this.props.logCreateHandler(event,this.state.logDetail, this.props.animal.id)}>
+        <form onSubmit={(event) => {
+          this.stateDefault()
+          this.props.logCreateHandler(event, this.state.logDetail, this.props.animal.id)
+          
+        }}>
           <fieldset>
             <textarea name="logDetail" type="text" placeholder="daily logs" value={this.state.logDetails} onChange={this.logChangeHandler} />
             <input type="submit" placeholder="submit" />
