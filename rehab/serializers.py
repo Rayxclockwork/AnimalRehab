@@ -21,7 +21,7 @@ class AnimalSerializer(serializers.ModelSerializer):
     class Meta:
         """Create animal serialization."""
         model = Animal
-        fields = ['id','vet', 'name', 'weight', 'entry_at','exit_at', 'details', 'is_archived']
+        fields = ['id','vet', 'name', 'weight', 'entry_at', 'details', 'is_archived']
 
 
 class CreateAnimalSerializer(serializers.ModelSerializer):
